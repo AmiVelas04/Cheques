@@ -1,9 +1,9 @@
 <?php 
 //const server="192.168.2.102";
 const server="Localhost";
-const usuario="PYC";
-const contra="P&C_Sis_2018";
-const bd="colegio";
+const usuario="root";
+const contra="Ami_1532";
+const bd="ChequesBd";
 
 const sgbd="mysql:host=". server . "; dbname=" . bd;
 const method='AES-128-CBC';
