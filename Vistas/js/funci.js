@@ -1,4 +1,115 @@
 
+function mostrar_cuenta(banco)
+{
+if (banco!="")
+{
+$.ajax({
+    type: "POST",
+    url: "ajax/chequesAjax",
+    data:{banco:$('#banco').val()},
+    success:function(r)
+    {('#respuesta').html(r);}
+});
+}
+else
+{
+    $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax",
+        data:{banco:""},
+        success:function(r)
+        {('#respuesta').html(r);}
+    });
+}
+
+}
+//Mostrar o ingresar cuenta
+function mostrarBanco(valor)
+{
+if (valor=="0")
+{
+var d= document.getElementById("lstbanco");
+d.style= "display:none";
+var t= document.getElementById("txtbanco");
+t.style="display:flex";
+$(document).ready(function(){
+        
+    $//('input:radio[name=optcuenta]:nth(0)').attr('checked',true);
+    $('input:radio[name=optcuenta]')[0].checked = true;
+    $('input:radio[name=optcheq]')[0].checked=true;
+});
+
+var cl= document.getElementById("lstcuenta");
+cl.style= "display:none";
+var ct= document.getElementById("txtcuenta");
+ct.style="display:flex";
+
+var chl= document.getElementById("lstcheq");
+chl.style= "display:none";
+var cht= document.getElementById("txtcheq");
+cht.style="display:flex";
+
+
+}
+else if(valor=="1")
+{
+    var d= document.getElementById("lstcheq");
+    d.style= "display:flex";
+    var t= document.getElementById("txtcheq");
+    t.style="display:none";
+}
+else
+{}
+
+}
+
+//Mostrar o ingresar cuenta
+function mostrarCuenta(valor)
+{
+    if (valor=="0")
+{
+var d= document.getElementById("lstcuenta");
+d.style= "display:none";
+var t= document.getElementById("txtcuenta");
+t.style="display:flex";
+}
+else if(valor=="1")
+{
+    var d= document.getElementById("lstcuenta");
+    d.style= "display:flex";
+    var t= document.getElementById("txtcuenta");
+    t.style="display:none";
+}
+else
+{}
+}
+
+//Mostrar o ingresar chequera
+function mostrarChequera(valor)
+{
+    if (valor=="0")
+{
+var d= document.getElementById("lstcheq");
+d.style= "display:none";
+var t= document.getElementById("txtcheq");
+t.style="display:flex";
+}
+else if(valor=="1")
+{
+    var d= document.getElementById("lstcheq");
+    d.style= "display:flex";
+    var t= document.getElementById("txtcheq");
+    t.style="display:none";
+}
+else
+{}
+}
+
+
+
+//------------------------------------------------
+
+
 function habilitar(value1,value2,value3,value4){
    
     if (value1!="0" && value2!="0" && value3!="0" && value4!="0")

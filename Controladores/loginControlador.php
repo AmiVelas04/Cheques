@@ -58,11 +58,11 @@ class loginControlador extends loginModelo
 			 	$_SESSION['codigo_bitacora_pyc']=$codigoB;*/
 			 	if ($row['tipo']== 1) 
 			 	{
-			 		$url=SERVERURL."admin";
+			 		$url=SERVERURL."main";
 			 	} 
 			 	else 
 			 	{
-			 	$url=SERVERURL."admin";
+			 	$url=SERVERURL."main";
 			 		
 				 }
 				 echo $usuario;

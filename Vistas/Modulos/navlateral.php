@@ -5,7 +5,7 @@
 		<div class="full-box dashboard-sideBar-ct">
 			<!--SideBar Title -->
 			<div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
-				<?php echo proy; ?><i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
+				<?php echo 'Nueva Verapaz';//proy; ?><i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
 			</div>
 			<div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
 				 <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"> </i>
@@ -38,44 +38,39 @@
 			</div>
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
+				
 				<li>
-					<a href=" <?php echo SERVERURL; ?>home">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Cheques <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href=" <?php echo SERVERURL; ?>cheques"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i> Generar Cheque</a>
+						</li>
+						
+						<li>
+							<a href=" <?php echo SERVERURL; ?>usuario"><i class="zmdi zmdi-money zmdi-hc-fw"></i>Liberar Cheque</a>
+						</li>
+				</ul>
 				</li>
+				<li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Administración <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href=" <?php echo SERVERURL; ?>cat"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Catedraticos</a>
+							<a href=" <?php echo SERVERURL; ?>usuario"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Usuarios</a>
+						</li>
+						 
+						<li>
+							<a href=" <?php echo SERVERURL; ?>ingresoch"><i class="zmdi zmdi-card zmdi-hc-fw"></i>Crear Chequeras</a>
 						</li>
 						
-						<li>
-							<a href=" <?php echo SERVERURL; ?>alumno"><i class="zmdi zmdi-chart zmdi-hc-fw"></i> Alumnos</a>
-						</li>
-						<li>
-							<a href=" <?php echo SERVERURL; ?>cursos"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Ingreso de cursos</a>
-						</li>
-						<li>
-							<a href=" <?php echo SERVERURL; ?>calificacion"><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Ingreso de calificaciones</a>
-						</li>
+						
 					</ul>
 				</li>
-				<li>
-					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-						<li>
-							<a href=" <?php echo SERVERURL; ?>admin"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Administradores</a>
-						</li>
-						<li>
-							<a href=" <?php echo SERVERURL; ?>catedratico"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Catedraticos</a>
-						</li>
-					</ul>
-				</li>
+		
 				<li>
 					<a href=" <?php echo SERVERURL; ?>addcali">
 						<i class="zmdi zmdi-book-image zmdi-hc-fw"></i> Reportes

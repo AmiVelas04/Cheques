@@ -1,5 +1,5 @@
 <?php
-const SERVERURL="http://localhost/Pro/";
-Const proy="Centro de Estudios Avanzados P&C";
+const SERVERURL="http://localhost/Cheques/";
+Const proy="Proyecto Verapaz";
 date_default_timezone_set("America/Guatemala");
 ?>

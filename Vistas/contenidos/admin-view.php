@@ -1,8 +1,8 @@
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> USUARIOS <small>CATEDRATICOS</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> PAGINA PRINCIPAL<small></small></h1>
 			</div>
-			<p class="lead">Ingrese los datos del administrador/catedrtico</p>
+			<p class="lead"></p>
 		</div>
 
 		<div class="container-fluid">
@@ -17,12 +17,12 @@
 		<div class="container-fluid">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp; NUEVO CATEDRATICO</h3>
+					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp;Informe General</h3>
 				</div>
 				<div class="panel-body">
 					<form data-form="save" action="<?php echo SERVERURL;?>ajax/administradorAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
 				    	<fieldset>
-				    		<legend><i class="zmdi zmdi-account-box"></i> &nbsp; Información personal</legend>
+				    		<legend><i class="zmdi zmdi-account-box"></i> &nbsp; Información de cheques</legend>
 				    		<div class="container-fluid">
 				    			<div class="row">
 				    				<div class="col-xs-12">

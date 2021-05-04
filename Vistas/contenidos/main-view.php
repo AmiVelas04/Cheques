@@ -1,49 +1,49 @@
-<div class="container-fluid">
+        <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles">System <small>Tiles</small></h1>
+			  <h1 class="text-titles">Página Principal <small>Información</small></h1>
 			</div>
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Admin
+					Usuarios
 				</div>
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-account"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">7</p>
-					<small>Register</small>
+					<p class="full-box">1</p>
+					<small><a href="<?php echo SERVERURL; ?>./usuario">Nuevo</a></small>
 				</div>
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Teacher
+					Cheques pendientes de liberacion
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-male-alt"></i>
+					<i class="zmdi zmdi-balance-wallet"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">10</p>
-					<small>Register</small>
+					<small><a href="<?php echo SERVERURL; ?>./cheques">Revisar</a></small>
 				</div>
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Student
+					Cheques Generados
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-face"></i>
+					<i class="zmdi zmdi-card"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">70</p>
-					<small>Register</small>
+					<p class="full-box">15</p>
+                    <a href="<?php echo SERVERURL; ?>./cheques"><small>Generar</small></a>
 				</div>
 			</article>
 		</div>
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles">System <small>TimeLine</small></h1>
+			  <h1 class="text-titles">Control <small>Actividades</small></h1>
 			</div>
 			<section id="cd-timeline" class="cd-container">
                 <div class="cd-timeline-block">
@@ -98,3 +98,5 @@
                         <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
                     </div>
                 </div>   
+		
+		

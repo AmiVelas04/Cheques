@@ -44,7 +44,7 @@ $('.btn-exit-system').on('click', function(e){
 	});
 });
 
-$('.FormularioAjax').submit(function(e)
+/*$('.FormularioAjax').submit(function(e)
 {
 	e.preventDefault();
 	var form=$(this);
@@ -124,7 +124,7 @@ $('.FormularioAjax').submit(function(e)
 		return false;
 	}
 		   );
-});
+});*/
 
 (function($){
     $(window).on("load",function(){

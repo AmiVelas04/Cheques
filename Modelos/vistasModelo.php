@@ -3,10 +3,7 @@
 		protected function obtener_vistas_modelo($vistas)
 		{
 
-			$lista_blanca=["adminlist","adminsearch","admin","busqueda","catalogo",
-			"categorialista","categoria","catedraticobusca","catedraticolista","catedratico",
-			"catlista","cat","home","libroconfig","libroinfo","cursos",
-			"micuenta","misdatos","alumnolista","alumno","calificacion","addcali"];
+			$lista_blanca=[	"admin","liberarch","cheques","ingresoch","usuario","main"];
 			if(in_array($vistas,$lista_blanca))
 				{
 					if(is_file("./Vistas/contenidos/" . $vistas . "-view.php")){
