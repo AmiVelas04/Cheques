@@ -16,25 +16,31 @@ require_once "./vistas/modulos/script.php";
 
 class chequeControlador extends chequeModelo
 {
-	public function agregar_cheque_controlador()
+	public function agregar_cheque_controlador($datos)
 	{
-		$cod=modeloMain::limpiar_cadena($_POST['cod-reg']);
-		$fech= modeloMain::limpiar_cadena($_POST['fecha-reg']);
-        $monto= modeloMain::limpiar_cadena($_POST['monto-reg']);
-        $nombre= modeloMain::limpiar_cadena($_POST['nombre-reg']);
+       
+        $idch= chequeModelo::new_id_cheque_modelo();
+        
+        $datoscheq=[
+        'id'=> $idch,  
+        'fecha'=>$datos['fecha'],
+        'monto'=>$datos['monto'],
+        'beneficiario'=>$datos['nombre']
+        ];
+       
 
-	
-  
+        $res1=chequeModelo::ingresar_cheque_modelo($datoscheq);
+        if ($res1->rowCount()>=1)
+        {
+            $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Cheque registrado con exito","tipo"=>"success"];	
+        }
+        else
+        {
+            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo regitrar el cheque","tipo"=>"error"];	
 
-            $consulta1=modeloMain::ejecutar_consulta_simple("select id from alumno where cod_al=$cod");
+        }
 
-			if ($consulta1->rowCount()>=1) 
-			{
-				$alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"El alumno ya se encuentra resitrado","tipo"=>"error"];	
-            } 
-            
-
-            return alumnoModelo::Sweet_alert($alerta);
+        return chequeModelo::Sweet_alert($alerta);
             
    }
 
@@ -67,9 +73,8 @@ public function mostrar_cuenta_controlador($idbanco){
     if ($sql->rowcount()>=1)
     {
     $datos=$sql->fetchall();
-    $conte.="<h2><label class=''>Chequera *</label></h2>
-    <div class='btn-group'>
-    <div class='btn-group'>
+    $conte.="
+    
     <option value='0'> Seleccione una cuenta</option>";
     foreach($datos as $row)
     {
@@ -88,9 +93,7 @@ public function mostrar_chequera_controlador($idcuenta){
     if ($sql->rowcount()>=1)
     {
     $datos=$sql->fetchall();
-    $conte.="<h2><label class=''>Chequera *</label></h2>
-    <div class='btn-group'>
-    <div class='btn-group'> 
+    $conte.="   
     <option value='0'>Seleccione la chequera</option>";
     foreach($datos as $row)
     {

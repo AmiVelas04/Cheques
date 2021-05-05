@@ -14,10 +14,10 @@ require_once "./vistas/modulos/script.php";
 //controlador para agregar  chequeras
 class ingresochControlador extends ingresochModelo
 {
-
+    
 public function ingreso_banco_controlador($datos)
 {
-    $cod=ingresoModelo::codigo_banco();
+    $cod=ingresochModelo::new_codigo_banco();
     $nombreban=modeloMain::limpiar_cadena($datos['NomBanc']);
     $direccion=modeloMain::limpiar_cadena($datos['DirBanc']);
 
@@ -27,7 +27,7 @@ $datosban=['id'=>$cod,
             $res1=ingresochModelo::ingreso_banco_modelo($datosban);
             if ($res1->rowCount()>=1)
             {
-                $codcu=ingresochModelo::codigo_cuenta();
+                $codcu=ingresochModelo::new_codigo_cuenta();
                 
                 $num_cue=modeloMain::limpiar_cadena($datos['NumCue']);
                 $saldo=modeloMain::limpiar_cadena($datos['Saldo']);
@@ -41,7 +41,7 @@ $datosban=['id'=>$cod,
                 $res2=ingresochModelo::ingreso_cuenta_modelo($datoscue);
                 if($res2->rowCount()>=1)
                 {
-                    $id_chequera= ingresoModelo::codigo_chequera();
+                    $id_chequera= ingresoModelo::new_codigo_chequera();
                     $estado= modeloMain::limpiar_cadena($datos['Estado']);
                     $cantidad= modeloMain::limpiar_cadena($datos['Cant']);
                     $datoscheq=[
@@ -69,12 +69,9 @@ $datosban=['id'=>$cod,
             {
                 $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar el banco","tipo"=>"error"];	
             }
-
-
-return "Estado de funcionamiento";// ingresochModelo::Sweet_alert($alerta);
-  
-
-}
+            
+          return ingresochModelo::Sweet_alert($alerta);
+    }
 
 
 

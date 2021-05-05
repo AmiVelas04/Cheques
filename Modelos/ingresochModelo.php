@@ -11,7 +11,7 @@ require_once "./core/modeloMain.php";
 
 }
 
-class ingresochModelo extends modeloMain
+public class ingresochModelo extends modeloMain
 {
     protected function ingreso_banco_modelo($datos)
     {
@@ -28,7 +28,6 @@ class ingresochModelo extends modeloMain
 	    {
 		    echo "El error al agregar el banco es: " .$e;
 	    }   
-
     }
 
     protected function ingreso_cuenta_modelo($datos)
@@ -119,8 +118,6 @@ class ingresochModelo extends modeloMain
 	    {
 		    echo "El error al agregar el banco es: " .$e;
 	    }  
-
-
     }
 
     protected function codigo_banco($banco){

@@ -24,7 +24,10 @@
 					<i class="zmdi zmdi-balance-wallet"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">10</p>
+					<p class="full-box"><?php require_once "./Controladores/mainControlador.php";
+												$gen = new mainControlador(); 
+                                                echo $gen->mostrar_pendientes_controlador();;
+                                                ?></p>
 					<small><a href="<?php echo SERVERURL; ?>./cheques">Revisar</a></small>
 				</div>
 			</article>
@@ -36,7 +39,7 @@
 					<i class="zmdi zmdi-card"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">15</p>
+					<p class="full-box"><?php echo $gen->mostrar_cheque_controlador();?></p>
                     <a href="<?php echo SERVERURL; ?>./cheques"><small>Generar</small></a>
 				</div>
 			</article>
@@ -45,58 +48,38 @@
 			<div class="page-header">
 			  <h1 class="text-titles">Control <small>Actividades</small></h1>
 			</div>
+
+
 			<section id="cd-timeline" class="cd-container">
-                <div class="cd-timeline-block">
+               
+            <div class="cd-timeline-block">
                     <div class="cd-timeline-img">
                         <img src="  <?php echo SERVERURL; ?>Vistas/assets/avatars/StudetMaleAvatar.png" alt="user-picture">
                     </div>
-                    <div class="cd-timeline-content">
-                        <h4 class="text-center text-titles">1 - Name (Admin)</h4>
-                        <p class="text-center">
-                            <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                            <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                        </p>
-                        <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                    </div>
-                </div>  
+                    <?php $gen->mostrar_actividades(1); ?>
+            </div>  
+
                 <div class="cd-timeline-block">
                     <div class="cd-timeline-img">
                         <img src=" <?php echo SERVERURL; ?>Vistas/assets/avatars/StudetMaleAvatar.png" alt="user-picture">
                     </div>
-                    <div class="cd-timeline-content">
-                        <h4 class="text-center text-titles">2 - Name (Teacher)</h4>
-                        <p class="text-center">
-                            <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                            <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                        </p>
-                        <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                    </div>
+                    <?php echo $gen->mostrar_actividades(2); ?>
                 </div>
+
                 <div class="cd-timeline-block">
                     <div class="cd-timeline-img">
                         <img src=" <?php echo SERVERURL; ?>Vistas/assets/avatars/StudetMaleAvatar.png" alt="user-picture">
                     </div>
-                    <div class="cd-timeline-content">
-                        <h4 class="text-center text-titles">3 - Name (Student)</h4>
-                        <p class="text-center">
-                            <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                            <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                        </p>
-                        <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                    </div>
+                    <?php echo $gen->mostrar_actividades(3); ?>
                 </div>
+
+
                 <div class="cd-timeline-block">
                     <div class="cd-timeline-img">
                         <img src=" <?php echo SERVERURL; ?>Vistas/assets/avatars/StudetMaleAvatar.png" alt="user-picture">
                     </div>
-                    <div class="cd-timeline-content">
-                        <h4 class="text-center text-titles">4 - Name (Personal Ad.)</h4>
-                        <p class="text-center">
-                            <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                            <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                        </p>
-                        <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                    </div>
+                    <?php echo $gen->mostrar_actividades(4); ?>
                 </div>   
-		
+    
+    </section>
 		

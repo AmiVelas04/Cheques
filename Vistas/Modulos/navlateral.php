@@ -38,7 +38,14 @@
 			</div>
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
-				
+			<li>
+					<a href="<?php echo SERVERURL; ?>main"" class="">
+						<i class="zmdi zmdi-store zmdi-hc-fw"></i> Página Principal <i class=""></i>
+					</a>
+			
+				</li>	
+
+
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Cheques <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -53,6 +60,7 @@
 						</li>
 				</ul>
 				</li>
+				
 				<li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">

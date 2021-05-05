@@ -16,10 +16,30 @@ Global $idtel;
 
 class chequeModelo extends modeloMain
 {
+
+protected function new_id_cheque_modelo()
+{
+	$sql=modeloMain::ejecutar_consulta_simple("Select max(id_cheque) as id from cheque");
+
+	foreach($sql as $row)
+	{
+		$id=$row['id'];
+		if($id==null)
+		{
+			$id=1;
+		}
+		else
+		{
+			$id++;
+		}
+	}
+	echo "<script>console.log('Los datos que llegaron son :".$id."')</script>";
+	return $id;
+}
 	
     protected function mostrar_banco_modelo()
 {
-	$consul="Select id_banco as id, nombre from banco";
+	$consul="Select id_banco as id, nombre as banco from banco";
 	$sql=modeloMain::ejecutar_consulta_simple($consul);
 
 	return $sql;
@@ -40,7 +60,30 @@ protected function mostrar_chequera_modelo($id_cuenta)
     from chequera cheq
     inner JOIN cuenta_chequ c_cheq ON c_cheq.ID_CHEQUERA=cheq.ID_CHEQUERA AND c_cheq.ID_CUENTA=".$id_cuenta;
 	$sql=modeloMain::ejecutar_consulta_simple($consul);
+	echo "<script>console.log(".$consul.")</script>";
 	return $sql;
+}
+
+protected function ingresar_cheque_modelo($datos)
+{
+
+$estado="";
+	$sql=modeloMain::conectar()->prepare("Insert into cheque(id_cheque,fecha,monto,beneficiario,estado) values(:id,:fecha,:monto,:nombre,:estado)");
+		$sql->bindparam(":id",$datos['id']);
+        $sql->bindparam(":fecha",$datos['fecha']);
+		$sql->bindparam(":monto",$datos['monto']);
+		$sql->bindparam(":nombre",$datos['beneficiario']);
+        $sql->bindparam(":estado",$estado);
+        try
+        {
+		    $sql->execute();
+		    return $sql;
+	    }
+	    catch (PDOException $e)
+	    {
+		    echo "El error al agregar el cheque es: " .$e;
+	    }   
+
 }
     
     

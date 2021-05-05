@@ -34,7 +34,7 @@
 													<i class="zmdi zmdi-file-plus"></i> &nbsp; Nuevo
 													</label>
 									        		<label>
-													<input type="radio" name="optselec" id="opttext" value="1" onchange="mostrarBanco(this.value);">
+													<input type="radio" name="opttext" id="opttext" value="1" onchange="mostrarBanco(this.value);">
 													<i class="zmdi zmdi-filter-list"></i> &nbsp; Existente
 													</label>
 												</div>
@@ -67,7 +67,7 @@
 													<i class="zmdi zmdi-file-plus"></i> &nbsp; Nuevo
 													</label>
 									    			<label>
-														<input type="radio" name="optcuenta" id="opttextC" value="1" onchange="mostrarCuenta(this.value)">
+														<input type="radio" name="opttextc" id="opttextC" value="1" onchange="mostrarCuenta(this.value)">
 														<i class="zmdi zmdi-filter-list"></i> &nbsp; Existente
 													</label>
 												</div>
@@ -144,7 +144,7 @@
 		</div>
  
  <script>
-		
+/*		
 $('.FormularioAjax').submit(function(e)
 {
 	e.preventDefault();
@@ -226,5 +226,5 @@ $('.FormularioAjax').submit(function(e)
 	}
 		   );
 });
-
+*/
 </script>

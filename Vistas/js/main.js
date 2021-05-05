@@ -44,7 +44,7 @@ $('.btn-exit-system').on('click', function(e){
 	});
 });
 
-/*$('.FormularioAjax').submit(function(e)
+$('.FormularioAjax').submit(function(e)
 {
 	e.preventDefault();
 	var form=$(this);
@@ -112,19 +112,19 @@ $('.btn-exit-system').on('click', function(e){
 				return xhr;
 			},
 			success:function(data)
-			{
+			{alert(data);
+				console.log(data);
 				respuesta.html(data);
 			},
 			error:function () 
 			{
 				respuesta.html(MsjError);
-				
 			}
 			});
 		return false;
 	}
 		   );
-});*/
+});
 
 (function($){
     $(window).on("load",function(){
