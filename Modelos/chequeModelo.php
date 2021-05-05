@@ -60,7 +60,7 @@ protected function mostrar_chequera_modelo($id_cuenta)
     from chequera cheq
     inner JOIN cuenta_chequ c_cheq ON c_cheq.ID_CHEQUERA=cheq.ID_CHEQUERA AND c_cheq.ID_CUENTA=".$id_cuenta;
 	$sql=modeloMain::ejecutar_consulta_simple($consul);
-	echo "<script>console.log(".$consul.")</script>";
+	
 	return $sql;
 }
 
@@ -87,6 +87,31 @@ $estado="";
 }
     
     
+
+protected function mostrar_pendientes_modelo()
+{
+	$consul="SELECT ch.ID_CHEQUE as id  FROM cheque ch WHERE ch.ESTADO= 'Pendiente'";
+	$sql=modeloMain::ejecutar_consulta_simple($consul);
+	return $sql;
+	
+
+}
+
+protected function mostrar_datospen_modelo($idch)
+{
+$consul="SELECT ban.NOMBRE as nom,cu.NUM_CUENTA as num,che.ID_CHEQUERA as che,ch.MONTO as mon,ch.BENEFICIARIO as ben  FROM cheque ch
+INNER JOIN cheque_cheq chc ON ch.ID_CHEQUE = chc.ID_CHEQUE
+INNER JOIN chequera che ON che.ID_CHEQUERA=chc.ID_CHEQUERA
+INNER JOIN cuenta_chequ cuc ON che.ID_CHEQUERA=cuc.ID_CHEQUERA
+INNER JOIN cuenta cu ON cu.ID_CUENTA= cuc.ID_CUENTA
+INNER JOIN banco_cuenta bac ON bac.ID_CUENTA=cu.ID_CUENTA
+INNER JOIN banco ban ON ban.ID_BANCO= bac.ID_CUENTA
+WHERE ch.ESTADO='Pendiente' AND ch.ID_CHEQUE=".$idch;
+
+$sql=modeloMain::ejecutar_consulta_simple($consul);
+return $sql;
+
+}
     
     
     

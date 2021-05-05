@@ -120,6 +120,23 @@ else
 }
 
 
+function Mostrabanco(id)
+{
+    var cheque= id;
+    var valor = 1;
+    $.ajax({
+    type: "POST",
+    url: "ajax/chequesAjax.php",
+    data:{cheq_chequw, retorno:valor},
+    success:function(r)
+    { //alert(r);
+        $('#cuent').html(r);},
+    error:function()
+    {$('#cuent').html("No se encontraron cuentas")}
+});
+
+}
+
 
 
 

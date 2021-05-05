@@ -56,7 +56,7 @@
 						</li>
 						
 						<li>
-							<a href=" <?php echo SERVERURL; ?>usuario"><i class="zmdi zmdi-money zmdi-hc-fw"></i>Liberar Cheque</a>
+							<a href=" <?php echo SERVERURL; ?>liberarch"><i class="zmdi zmdi-money zmdi-hc-fw"></i>Liberar Cheque</a>
 						</li>
 				</ul>
 				</li>

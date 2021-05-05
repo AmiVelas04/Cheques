@@ -101,9 +101,66 @@ public function mostrar_chequera_controlador($idcuenta){
         $conte.="<option value='".$row['id']."'>". $row['id'] . "</option>";
     }
     }               
-    
     return $conte;
 }
+
+public function mostrar_chequespen_controlador()
+{
+    $sql=chequeModelo::mostrar_pendientes_modelo();
+    $conte="";
+    $num=0;
+    if ($sql->rowcount()>=1)
+    {
+    $datos=$sql->fetchall();
+    $conte.="   
+    <option value='0'>Seleccione el número de cheque</option>";
+    foreach($datos as $row)
+    {
+        $num++;
+        $conte.="<option value='".$row['id']."'>". $row['id'] . "</option>";
+    }
+    }               
+    return $conte;
+}
+
+public function mostrar_datosch_controlador($id,$dato)
+{
+    $sql=chequeModelo::mostrar_pendientes_modelo();
+    $conte="";
+    $num=0;
+    if ($sql->rowcount()>=1)
+    {
+    $datos=$sql->fetchall();
+    foreach($datos as $row)
+    {
+        if ($dato==1)
+        {
+            $conte= $row['nom'];
+        }
+        else if($dato==2)
+        {
+            $conte= $row['num'];
+
+        }
+        else if($dato==3)
+        {
+            $conte= $row['che'];
+        }
+        else if($dato==4)
+        {
+            $conte= $row['mon'];
+        }
+        else 
+        {
+            $conte= $row['ben'];
+        }
+    }
+    }
+    return $conte;
+
+}
+
+
 
 
 }
