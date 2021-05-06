@@ -4,13 +4,11 @@ if($peticionajax) {
 
 require_once "../Modelos/chequeModelo.php";
 require_once "../vistas/modulos/script.php";
-	
 }
 else
 {
 require_once "./Modelos/chequeModelo.php";
 require_once "./vistas/modulos/script.php";
-
 }
 //controlador para agregar alumno
 
@@ -36,12 +34,9 @@ class chequeControlador extends chequeModelo
         }
         else
         {
-            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo regitrar el cheque","tipo"=>"error"];	
-
+            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo registrar el cheque","tipo"=>"error"];	
         }
-
         return chequeModelo::Sweet_alert($alerta);
-            
    }
 
    //Mostrar los bancos ingresado
@@ -60,7 +55,6 @@ class chequeControlador extends chequeModelo
         $conte.="<option value='".$row['id']."'>". $row['banco'] . "</option>";
     }
     }               
-    
     return $conte;
 }
 
@@ -106,7 +100,7 @@ public function mostrar_chequera_controlador($idcuenta){
 
 public function mostrar_chequespen_controlador()
 {
-    $sql=chequeModelo::mostrar_pendientes_modelo();
+    $sql=chequeModelo::mostrar_pendiente_modelo();
     $conte="";
     $num=0;
     if ($sql->rowcount()>=1)
@@ -125,43 +119,41 @@ public function mostrar_chequespen_controlador()
 
 public function mostrar_datosch_controlador($id,$dato)
 {
-    $sql=chequeModelo::mostrar_pendientes_modelo();
-    $conte="";
-    $num=0;
+    $sql=chequeModelo::mostrar_datospen_modelo($id);
+  
     if ($sql->rowcount()>=1)
     {
     $datos=$sql->fetchall();
     foreach($datos as $row)
     {
-        if ($dato==1)
+        if($dato==1)
         {
-            $conte= $row['nom'];
+            $conte='<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,60}" class="form-control" id ="txtbanc" type="text" name="txtbanc" value="'.$row['nom'].'" disabled required="" maxlength="100" style="display:flex">';	
         }
         else if($dato==2)
         {
-            $conte= $row['num'];
-
+            $conte='<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,60}" class="form-control" id ="txtcuenta" type="text" name="txtcuenta" value="'.$row['num'].'"disabled required="" maxlength="100" style="display:flex">';
         }
-        else if($dato==3)
+        else if ($dato==3)
         {
-            $conte= $row['che'];
+            $conte='<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,60}" class="form-control" id ="txtchequera" type="text" name="txtchequera" value="'.$row['che'].'"disabled required="" maxlength="100" style="display:flex">';
         }
         else if($dato==4)
         {
-            $conte= $row['mon'];
+            $conte='<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,60}" class="form-control" id ="txtmonto" type="text" name="txtmonto" value="'.$row['mon'].'"required=""  disabled maxlength="100" style="display:flex">';
         }
-        else 
+        else if($dato==5)
         {
-            $conte= $row['ben'];
-        }
+            $conte='<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,60}" class="form-control" id ="txtnombre" type="text" name="txtnombre" value="'.$row['ben'].'" required="" disabled maxlength="100" style="display:flex">';
+        }       
     }
+    }
+    else
+    {
+        $conte='No existe este dato';
     }
     return $conte;
-
 }
-
-
-
 
 }
 
