@@ -33,7 +33,6 @@ protected function new_id_cheque_modelo()
 			$id++;
 		}
 	}
-	echo "<script>console.log('Los datos que llegaron son :".$id."')</script>";
 	return $id;
 }
 	
@@ -67,7 +66,7 @@ protected function mostrar_chequera_modelo($id_cuenta)
 protected function ingresar_cheque_modelo($datos)
 {
 
-$estado="";
+$estado="Pendiente";
 	$sql=modeloMain::conectar()->prepare("Insert into cheque(id_cheque,fecha,monto,beneficiario,estado) values(:id,:fecha,:monto,:nombre,:estado)");
 		$sql->bindparam(":id",$datos['id']);
         $sql->bindparam(":fecha",$datos['fecha']);
@@ -88,13 +87,11 @@ $estado="";
     
     
 
-protected function mostrar_pendientes_modelo()
+protected function mostrar_pendiente_modelo()
 {
 	$consul="SELECT ch.ID_CHEQUE as id  FROM cheque ch WHERE ch.ESTADO= 'Pendiente'";
 	$sql=modeloMain::ejecutar_consulta_simple($consul);
 	return $sql;
-	
-
 }
 
 protected function mostrar_datospen_modelo($idch)

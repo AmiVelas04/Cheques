@@ -17,32 +17,15 @@
 				<div class="panel-heading">
 					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp; NUEVO USUARIO</h3>
 				</div>
+
 				<div class="panel-body">
-					<form data-form="save" name="FormularioAjax" action="<?php echo SERVERURL;?>ajax/usuarioAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
+
+					<form data-form="save" id="FormularioAjax" name="FormularioAjax" action="<?php echo SERVERURL;?>ajax/usuarioAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
 				    	<fieldset>
 				    		<legend><i class="zmdi zmdi-assignment-o"></i> &nbsp;Información del usuario</legend>
 				    		<div class="container-fluid">
 				    			<div class="row">
-                                <div class="col-xs-12 col-sm-12">
-										<div class="form-group label-floating">
-										 	<label class="control-label">Nivel de usuario</label>
-											 <div class="radio radio-primary">
-										<label>
-											<input type="radio" name="optusu" id="op" value="0" ">
-											<i class="zmdi zmdi-star"></i> &nbsp; Gerencia
-										</label>
-									        <label>
-												<input type="radio" name="optusu" id="opttext" value="1">
-												<i class="zmdi zmdi-star"></i> &nbsp; Auditoria
-											</label>
-											<label>
-												<input type="radio" name="optusu" id="opttext" value="1">
-												<i class="zmdi zmdi-star"></i> &nbsp; Cajero
-											</label>
-										</div>
-										</div>
-									</div>
-
+                               
                                     <div class="col-xs-12 col-sm-6">
 										<div class="form-group label-floating">
 										<label class="control-label">Nombre *</label>
@@ -61,14 +44,14 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group label-floating">
 										<label class="control-label">Contraseña *</label>
-										  	<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,60}" class="form-control" type="text" name="pass1-reg" required="" maxlength="50">
+										  	<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ,0-9 ]{8,60}" class="form-control" type="password" name="pass1-reg" required="" maxlength="50">
 										</div>
 									</div>
 
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group label-floating">
 										<label class="control-label">Contraseña *</label>
-										  	<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,60}" class="form-control" type="text" name="pass2-reg" required="" maxlength="50">
+										  	<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ,0-9 ]{8,60}" class="form-control" type="password" name="pass2-reg" required="" maxlength="50">
 										</div>
 									</div>
 
@@ -76,9 +59,9 @@
 										<div class="form-group label-floating">
 										<label class="control-label">Nivel *</label>
 										  	<select class="form-control"  onchange ="" id="lstnivel" name="nivel">
-											<option value=1>Auditoria </option>
-											<option value=2>Gerencia </option>
-											<option value=3>Cajero </option>
+											<option value="1">Auditoria </option>
+											<option value="2">Gerencia </option>
+											<option value="3">Cajero </option>
 											</select>
 										</div>
 									</div>
@@ -96,4 +79,3 @@
 				</div>
 			</div>
 		</div>
-<?echo ?>

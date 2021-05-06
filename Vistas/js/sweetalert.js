@@ -32,7 +32,7 @@ showConfirmButton: false,
   function mensaje(titulo,texto,icono)
   {
     msjpequeño.fire({
-        title: texto,
+        title: titulo,
         icono:icono
     });
 

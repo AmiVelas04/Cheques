@@ -58,11 +58,11 @@ $('.FormularioAjax').submit(function(e)
 	var textoAlerta;
 	if (tipo==='save') 
 	{
-		textoAlerta="los datos se quedaran alamcenados en algun lugar" ;
+		textoAlerta="los datos serán almacenados" ;
 	}
 	else if(tipo==='delete')
 	{
-	textoAlerta="los datoa squedaran eliminados";	
+	textoAlerta="los datos seran eliminados";	
 	}
 	else if(tipo==='update')
 	{
@@ -70,7 +70,7 @@ $('.FormularioAjax').submit(function(e)
 	}
 	else
 	{
-	textoAlerta="Desear realizar esta operacion?";		
+	textoAlerta="¿Desear realizar esta operacion?";		
 	}
 
 	swal({
@@ -112,12 +112,14 @@ $('.FormularioAjax').submit(function(e)
 				return xhr;
 			},
 			success:function(data)
-			{alert(data);
+			{
+				alert(data);
 				console.log(data);
 				respuesta.html(data);
 			},
 			error:function () 
 			{
+				alert("No se pudo");
 				respuesta.html(MsjError);
 			}
 			});

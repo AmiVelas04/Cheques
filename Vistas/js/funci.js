@@ -19,7 +19,7 @@ function mostrar_chequera(cuentas,bancos)
 {
 var idban= bancos;
 var idcuent= cuentas;
-//console.log("codigo de la cuenta: " + idcuent);
+
 $.ajax({
     type: "POST",
     url:"ajax/chequesAjax.php",
@@ -120,22 +120,78 @@ else
 }
 
 
-function Mostrabanco(id)
+function MostrarDatosB(idcheq)
 {
-    var cheque= id;
-    var valor = 1;
-    $.ajax({
+    var chequenum= idcheq;
+
+    //Mostrar los datos del banco
+       $.ajax({
     type: "POST",
     url: "ajax/chequesAjax.php",
-    data:{cheq_chequw, retorno:valor},
-    success:function(r)
-    { //alert(r);
-        $('#cuent').html(r);},
+    data:{cheque:chequenum,dato:"1"},
+    success:function(datos1)
+    { //alert(datos1);
+        $('#datosB').html(datos1)
+    },
     error:function()
-    {$('#cuent').html("No se encontraron cuentas")}
+    {$('datosB').html("No se encontraron bancos")}
 });
 
+
+    //Mostrar los datos de la cuenta
+    $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax.php",
+        data:{cheque:chequenum,dato:"2"},
+        success:function(datos2)
+        { //alert(datos2);
+            $('#datosC').html(datos2)
+        },
+        error:function()
+        {$('#datosC').html("No se encontraron cuentas")}
+    });
+
+        //Mostrar los datos de la chequera
+        $.ajax({
+            type: "POST",
+            url: "ajax/chequesAjax.php",
+            data:{cheque:chequenum,dato:"3"},
+            success:function(datos3)
+            { //alert(r);
+                $('#datosCh').html(datos3)
+            },
+            error:function()
+            {$('#datosCh').html("No se encontraron chequeras")}
+        });
+
+            //Mostrar los datos del monto
+       $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax.php",
+        data:{cheque:chequenum,dato:"4"},
+        success:function(datos4)
+        { //alert(r);
+            $('#datosM').html(datos4)
+        },
+        error:function()
+        {$('#datosM').html("No se encontraron monto")}
+    });
+
+    //Mostrar los datos del beneficiario
+    $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax.php",
+        data:{cheque:chequenum,dato:"5"},
+        success:function(datos5)
+        { //alert(r);
+            $('#datosBe').html(datos5)
+        },
+        error:function()
+        {$('#datosBe').html("No se encontraron beneficiarios")}
+    });
 }
+
+
 
 
 

@@ -28,7 +28,16 @@ else if(isset($_POST['banco']) && isset($_POST['cuent']) && isset($_POST['cheque
     'monto'=>$_POST['monto-reg'],
     'nombre'=>$_POST['nombre-reg']
     ];
-    //echo "<script>alert('".($_POST['banco'])." - ".($_POST['cuent'])." - ". ($_POST['chequer'])." - ".($_POST['fecha-reg'])." - ".($_POST['monto-reg'])." - ".($_POST['nombre-reg'])."')</script>";
+    
 $Mbanc= new chequeControlador();
 echo $Mbanc->agregar_cheque_controlador($datos);
+}
+else{}
+
+if (isset($_POST['cheque']) && isset($_POST['dato']))
+{
+$id= $_POST['cheque'];
+$dato=$_POST['dato'];
+$mostrar= new chequeControlador();
+echo $mostrar->mostrar_datosch_controlador($id,$dato);
 }

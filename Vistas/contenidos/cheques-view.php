@@ -17,13 +17,16 @@
 				<div class="panel-heading">
 					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp; NUEVO CHEQUE</h3>
 				</div>
+				
 				<div class="panel-body">
-					<form data-form="save" name="FormularioAjax" action="<?php echo SERVERURL;?>ajax/chequesAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
+					
+					<form data-form="save" id="FormularioAjax" name="FormularioAjax" action="<?php echo SERVERURL;?>ajax/chequesAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
 				    	<fieldset>
 				    		<legend><i class="zmdi zmdi-assignment-o"></i> &nbsp; Información del cheque</legend>
 				    		<div class="container-fluid">
 				    			<div class="row">
-                                <div class="col-xs-12 col-sm-6">
+                                
+								<div class="col-xs-12 col-sm-6">
 										<div class="form-group label-floating">
 										<?php require_once "./Controladores/chequeControlador.php";
 												$gen = new chequeControlador();?>
@@ -48,9 +51,7 @@
 										<div class="form-group label-floating">
 										<label class="control-label" ">Chequera</label>
 										<select class="form-control"  onchange ="" id="chequer" name="chequer">
-										
 									    </select>
-										 
 										</div>
 									</div>
 							
