@@ -1,6 +1,6 @@
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Liberacion de Cheques <small><?php echo $_SESSION['usuario'] ?></small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Liberacion de Cheques <small><?php echo $_SESSION['usuario'];	   ?></small></h1>
 			</div>
 			<p class="lead"></p>
 </div>
@@ -10,7 +10,7 @@
 			  	
 			</ul>
 		</div>
-
+		<?php $niv=$_SESSION['nivel'];	   ?>
 		<!-- Panel nuevo CHEQUES -->
 		<div class="container-fluid">
 			<div class="panel panel-info">
@@ -92,16 +92,43 @@
 					   <div>
 					    <p class="text-center" style="margin-top: 20px;">
 					    	
-							<button type="save" class="btn btn-info btn-raised btn-sm"><h4><i class="zmdi zmdi-check-circle"></i></h4><h5> Liberar cheque</h5></button>
-							<button type="cancel" class="btn btn-warning btn-raised btn-sm"><h4><i class="zmdi zmdi-close-circle"></i></h4><h5> Cancelar cheque</h5></button>
+							<button type="save" id ="lib" class="btn btn-success btn-raised btn-sm"><h4><i class="zmdi zmdi-check-circle"></i></h4><h5> Liberar cheque</h5></button>
+							<button type="cancel"  id ="cancel" class="btn btn-warning btn-raised btn-sm"><h4><i class="zmdi zmdi-close-circle"></i></h4><h5> Cancelar cheque</h5></button>
+							
+							<button type="imp" id ="modi" class="btn btn-secondary btn-raised btn-sm" ><h4><i class="zmdi zmdi-edit"></i></h4><h5> Editar Cheque</h5></button>
 							
 						</p>
 						</div>
-
-
 					</form>
+
+					   <!-- Boton imprimir -->
+					<form action="<?php echo SERVERURL;?>Ajax/imprimirAjax.php" method="POST" method="GET">
+ 					<input type="text" name="chequeimp" id="chequeimp"  style="display:none;"><br>
+ 					 
+  <input type="submit" value="Imprimir" class="btn btn-info btn-raised btn-sm">
+</form>
+					
 				</div>
 						<div class="RespuestaAjax" name="RespuestaAjax" id="RespuestaAjax"></div>
-			
 		</div>
  
+		<?php
+  // Si esta definida la variable
+  if (isset($niv) && $niv>1) {
+?>
+<script>
+// En el onload
+$(function() {
+	//$("#modi").prop("disabled",true);
+	$("#modi").css('visibility', 'hidden'); 
+});
+</script>
+<?php
+  }
+  else
+  {
+//echo "<script>console.log('".$niv."')</script>";
+
+  }
+?>
+

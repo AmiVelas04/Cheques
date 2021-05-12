@@ -26,7 +26,11 @@ class loginControlador extends loginModelo
 		if ($datoscuenta->rowcount()==1) 
 		{
 
-			$row=$datoscuenta->fetch();
+			foreach($datoscuenta as $row)
+	{
+		//$row=->fetch();
+
+
 			/*$fechaactual=date("Y-m-d");
 			$yearactual=date("Y");
 			$horaactual=date("h:i:s a");
@@ -47,8 +51,14 @@ class loginControlador extends loginModelo
 			$insertarbitacora=modeloMain::guardar_bitacora($datosbitacora);
 			if ($insertarbitacora->rowcount()>=1) 
 			{*/
-				 session_start(['name'=>'pyc']);
-				$_SESSION['usuario'] =$usuario;
+				 session_start(['name'=>'cheques']);
+				 $_SESSION['id'] =$row['id']; 
+				$_SESSION['usuario'] =$row['nombre'];
+				$_SESSION['nivel'] =$row['nivel'];
+				$_SESSION['monto'] =$row['monto'];
+				echo "<script>alert('".$row['nombre'].":".$row['nivel'].",".$row['nivel']."')</script>";
+				
+			}
 			 /*	$_SESSION['usuarip_pyc']=$row['CuentaUsuario'];
 			 	$_SESSION['tipo_pyc']=$row['CuentaTipo'];
 			 	$_SESSION['privilegio_pyc']=$row['CuentaPrivilegio'];
@@ -56,13 +66,13 @@ class loginControlador extends loginModelo
 			 	$_SESSION['token_pyc']=md5(uniqid(mt_rand(),true));
 			 	$_SESSION['codigo_cuenta_pyc']=$row['CuentaCodigo'];
 			 	$_SESSION['codigo_bitacora_pyc']=$codigoB;*/
-			 	if ($row['tipo']== 1) 
+			 	if ($row['nivel']== 1) 
 			 	{
 			 		$url=SERVERURL."main";
 			 	} 
 			 	else 
 			 	{
-			 	$url=SERVERURL."main";
+			 	$url=SERVERURL."cheques";
 			 		
 				 }
 				 echo $usuario;

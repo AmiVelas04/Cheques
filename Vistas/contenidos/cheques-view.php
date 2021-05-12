@@ -1,9 +1,9 @@
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-card zmdi-hc-fw"></i>Generacion de cheques <small><?php echo $_SESSION['usuario'] ?></small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-card zmdi-hc-fw"></i>Generacion de cheques <small><?php  echo $_SESSION['usuario'];  ?></small></h1>
 			</div>
 			<p class="lead"></p>
-		</div>
+</div>
 
 		<div class="container-fluid">
 			<ul class="breadcrumb breadcrumb-tabs">
@@ -15,7 +15,7 @@
 		<div class="container-fluid">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp; NUEVO CHEQUE</h3>
+					<h3 class="panel-title"><i class="zmdi zmdi-plus"></i> &nbsp; NUEVO CHEQUE </h3>
 				</div>
 				
 				<div class="panel-body">

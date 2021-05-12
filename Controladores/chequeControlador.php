@@ -17,25 +17,64 @@ class chequeControlador extends chequeModelo
 	public function agregar_cheque_controlador($datos)
 	{
        
+
         $idch= chequeModelo::new_id_cheque_modelo();
-        
+        $idchequera=$datos['chequera'];
+        $stado=$datos['estado'];
+        $monto=$datos['monto'];
         $datoscheq=[
         'id'=> $idch,  
         'fecha'=>$datos['fecha'],
         'monto'=>$datos['monto'],
-        'beneficiario'=>$datos['nombre']
+        'beneficiario'=>$datos['nombre'],
+        'estado'=>$stado
         ];
        
+        $conteo= chequeModelo::cant_cheque_modelo($idchequera);
+        $chdispo=$conteo->fetchAll();
+        foreach($chdispo as $lista)
+        {
+            $chpermi=$lista['cant'];
+            $chhecho=$lista['hechos'];
+        }
+        if ($chpermi<=$chhecho)
+        {
+            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No existen cheques disponibles para esta chequera","tipo"=>"error"];	 
+        }
+        else
+        {
 
         $res1=chequeModelo::ingresar_cheque_modelo($datoscheq);
         if ($res1->rowCount()>=1)
         {
-            $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Cheque registrado con exito","tipo"=>"success"];	
+            $datosasignachequ=
+            [
+               'idch'=>$idch,
+               'idc'=>$idchequera
+            ];
+            $res2=chequeModelo::asigna_cheque_cheq_modelo($datosasignachequ);
+
+            if ($res2->RowCount()>=1)
+            {
+                if ($stado=='Pendiente' && $monto>=25000)
+                {$alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Cheque registrado con exito, pero pendiente de liberacion de Gerencia ","tipo"=>"success"];	}
+                elseif($stado=='Pendiente' && $monto>=5000)
+                {$alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Cheque registrado con exito, pero pendiente de liberacion de Auditorria ","tipo"=>"success"];	}
+                else
+                {
+                    $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Cheque registrado con exito, listo para impresión ","tipo"=>"success"];
+                }
+            }
+            else
+            {
+                $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo registrar/asignar el cheque","tipo"=>"error"];	
+            }
         }
         else
         {
             $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo registrar el cheque","tipo"=>"error"];	
         }
+    }
         return chequeModelo::Sweet_alert($alerta);
    }
 
@@ -68,8 +107,7 @@ public function mostrar_cuenta_controlador($idbanco){
     {
     $datos=$sql->fetchall();
     $conte.="
-    
-    <option value='0'> Seleccione una cuenta</option>";
+        <option value='0'> Seleccione una cuenta</option>";
     foreach($datos as $row)
     {
         $num++;

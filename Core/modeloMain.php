@@ -1,13 +1,11 @@
 <?php 
-
 if ($peticionajax) {
-
 require_once "../core/configAPP.php";
 require_once "../core/configeneral.php";
 }
 else
 {
-	require_once "./core/configeneral.php";
+require_once "./core/configeneral.php";
 require_once "./core/configAPP.php";
 }
 class modeloMain{
@@ -19,7 +17,6 @@ class modeloMain{
 
 	protected function ejecutar_consulta_simple($consulta)
 	{
-
 		$respuesta=self::conectar()->prepare($consulta);
 		$respuesta->execute();
 		return $respuesta;
@@ -39,8 +36,6 @@ class modeloMain{
 		}
 		catch(PDOException $e)
 		{
-			
-					
 		}
 		}	
 		
@@ -50,7 +45,6 @@ class modeloMain{
 		$sql=self::conectar()->prepare("delete from cuenta where cuentacodigo=:codigo");
 		$sql->bindparam(":codigo",$codigo);
 		$sql->execute();
-		
 		return $sql;
 
 	}
@@ -65,7 +59,6 @@ class modeloMain{
 		$sql->bindparam(":tipo",$datos['tipo']);
 		$sql->bindparam(":year",$datos['year']);
 		$sql->bindparam(":cuenta",$datos['cuenta']);
-
 		$sql->execute();
 		return $sql; 
 	}
@@ -178,7 +171,8 @@ class modeloMain{
   			type:"'.$datos["tipo"]. '",
   			confirmButtontext: "Aceptar"
 			}).then(function(){
-				$("#FormularioAjax")[0].reset();
+			$("#FormularioAjax")[0].reset();
+		
 				});
 			</script>
 			';

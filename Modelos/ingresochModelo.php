@@ -11,7 +11,7 @@ require_once "./core/modeloMain.php";
 
 }
 
-public class ingresochModelo extends modeloMain
+class ingresoModelo extends modeloMain
 {
     protected function ingreso_banco_modelo($datos)
     {
@@ -33,8 +33,8 @@ public class ingresochModelo extends modeloMain
     protected function ingreso_cuenta_modelo($datos)
     {
         $sql=modeloMain::conectar()->prepare("Insert into cuenta(id_cuenta,num_cuenta,saldo,tipo,estado) values(:id,:cuenta,:saldo,:tipo,:estado)");
-		$sql->bindparam(":id",$datos['id']);
-        $sql->bindparam(":cuenta",$datos['cuenta']);
+		$sql->bindparam(":id",$datos['codcue']);
+        $sql->bindparam(":cuenta",$datos['numcue']);
 		$sql->bindparam(":saldo",$datos['saldo']);
         $sql->bindparam(":tipo",$datos['tipo']);
 		$sql->bindparam(":estado",$datos['estado']);
@@ -52,10 +52,10 @@ public class ingresochModelo extends modeloMain
 
     protected function ingreso_chequera_modelo($datos)
     {
-        $sql=modeloMain::conectar()->prepare("Insert into chequera(id_chequera,Estado,Cantidad) values(:id,:cheq,:cant)");
+        $sql=modeloMain::conectar()->prepare("Insert into chequera(id_chequera,Estado,Cantidad) values(:id,:estado,:cant)");
 		$sql->bindparam(":id",$datos['id']);
-        $sql->bindparam(":nombre",$datos['cheq']);
-		$sql->bindparam(":dir",$datos['cant']);
+        $sql->bindparam(":estado",$datos['estado']);
+		$sql->bindparam(":cant",$datos['cant']);
         try
         {
 		    $sql->execute();
@@ -63,12 +63,12 @@ public class ingresochModelo extends modeloMain
 	    }
 	    catch (PDOException $e)
 	    {
-		    echo "El error al agregar el banco es: " .$e;
+		    echo "El error al agregar el chequera es: " .$e;
 	    }  
 
     }
 
-    protected function asigna_banco_cuenta_modelo()
+    protected function asigna_banco_cuenta_modelo($datos)
     {
         $sql=modeloMain::conectar()->prepare("Insert into banco_cuenta(id_cuenta,id_banco) values(:idc,:idb)");
 		$sql->bindparam(":idc",$datos['idc']);
@@ -81,16 +81,16 @@ public class ingresochModelo extends modeloMain
 	    }
 	    catch (PDOException $e)
 	    {
-		    echo "El error al agregar el banco es: " .$e;
+		    echo "El error al asignar banco  cuenta es: " .$e;
 	    }  
 
 
     }
-    protected function asigna_cuenta_cheq_modelo()
+    protected function asigna_cuenta_cheq_modelo($datos)
     {
-        $sql=modeloMain::conectar()->prepare("Insert into cuenta_cheq(id_cuenta,id_cheque) values(:idc,:idb)");
+        $sql=modeloMain::conectar()->prepare("Insert into cuenta_chequ(id_cuenta,id_chequera) values(:idc,:idch)");
 		$sql->bindparam(":idc",$datos['idc']);
-        $sql->bindparam(":idb",$datos['idb']);
+        $sql->bindparam(":idch",$datos['idch']);
 		
         try
         {
@@ -99,16 +99,17 @@ public class ingresochModelo extends modeloMain
 	    }
 	    catch (PDOException $e)
 	    {
-		    echo "El error al agregar el banco es: " .$e;
+          
+		    echo "El error al asignar cuenta y chequera es: " .$e;
 	    }  
 
     }
 
-    protected function asigna_cheque_cheq_modelo()
+    protected function asigna_cheque_cheq_modelo($datos)
     {
-        $sql=modeloMain::conectar()->prepare("Insert into cheq_cheq(id_chequera,id_cheque) values(:idc,:idb)");
+        $sql=modeloMain::conectar()->prepare("Insert into cheque_cheq(id_chequera,id_cheque) values(:idc,:idch)");
 		$sql->bindparam(":idc",$datos['idc']);
-        $sql->bindparam(":idb",$datos['idb']);
+        $sql->bindparam(":idch",$datos['idch']);
         try
         {
 		    $sql->execute();
@@ -129,10 +130,10 @@ public class ingresochModelo extends modeloMain
         return $id;
     }
     protected function new_codigo_banco(){
-        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_banco) from banco");
+        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_banco) as id from banco");
         foreach($sql as $rows)
         {
-            $id=$rows['id_banco'];
+            $id=$rows['id'];
             if($id==null)
             {
                 $id=1;
@@ -155,10 +156,10 @@ public class ingresochModelo extends modeloMain
     }
 
     protected function new_codigo_cuenta(){
-        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_cuenta) from cuenta");
+        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_cuenta) as id from cuenta");
         foreach($sql as $rows)
         {
-            $id=$rows['id_cuenta'];
+            $id=$rows['id'];
             if($id==null)
             {
                 $id=1;
@@ -180,11 +181,11 @@ public class ingresochModelo extends modeloMain
         return $id;
     }
     
-    protected function new_codigo_chequera($chequera){
-        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_chequera) from chequera");
+    protected function new_codigo_chequera(){
+        $sql=modeloMain::ejecutar_consulta_simple("Select max(id_chequera) as id from chequera");
         foreach($sql as $rows)
         {
-            $id=$rows['id_chequera'];
+            $id=$rows['id'];
             if($id==null)
             {
                 $id=1;

@@ -20,6 +20,7 @@ public function ingreso_usuario_controlador($datos)
         $pass1=$datos['pass1'];
         $pass2=$datos['pass2'];
 		$nivel=$datos['nivel'];
+        $mont=$datos['monto'];
         $id= usuarioModelo::id_usuario_modelo();
 
 
@@ -34,7 +35,8 @@ public function ingreso_usuario_controlador($datos)
                 'nombre'=>$nombre,
                 'usuario'=>$usuario,
                 'pass'=>$pass2,    
-                'nivel'=>$nivel
+                'nivel'=>$nivel,
+                'monto'=>$mont
             ];
            
     

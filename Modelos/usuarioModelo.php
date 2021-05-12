@@ -13,12 +13,13 @@ class usuarioModelo extends modeloMain
 {
     protected function ingreso_usuario_modelo($datos)
     {
-        $sql=modeloMain::conectar()->prepare("Insert into usuario(id_usu,nombre,usuario,pass,nivel) values(:id,:nombre,:usu,:pass,:nivel)");
+        $sql=modeloMain::conectar()->prepare("Insert into usuario(id_usu,nombre,usuario,pass,nivel,monto) values(:id,:nombre,:usu,:pass,:nivel,:monto)");
 		$sql->bindparam(":id",$datos['codigo']);
         $sql->bindparam(":nombre",$datos['nombre']);
 		$sql->bindparam(":usu",$datos['usuario']);
         $sql->bindparam(":pass",$datos['pass']);
         $sql->bindparam(":nivel",$datos['nivel']);
+        $sql->bindParam(":monto",$datos['monto']);
        
         try
         {

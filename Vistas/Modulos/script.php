@@ -8,7 +8,8 @@
 	<script src="<?php echo SERVERURL; ?>vistas/js/main.js"></script>
 	<script	src="<?php echo SERVERURL; ?>vistas/js/funci.js"></script>
 	<script	src="<?php echo SERVERURL; ?>vistas/js/sweetalert2.min.js"></script>
-	<?php //Falta scriptalert agregarlo aca; ?>
+	
+	<?php echo"";?>
 	<link rel='stylesheet' type='text/css' href='<?php echo SERVERURL; ?>vistas/css/sweetalert2.css'>
 
 	

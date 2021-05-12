@@ -46,13 +46,14 @@ $('.btn-exit-system').on('click', function(e){
 
 $('.FormularioAjax').submit(function(e)
 {
+	console.log("inicar la funcion ajax");
 	e.preventDefault();
 	var form=$(this);
 	var tipo = form.attr('data-form');
 	var accion = form.attr('action');
 	var metodo = form.attr('method');
 	var respuesta = form.children('.RespuestaAjax');
-	var MsjError= "<script> swal('Ocurrio un error'); </script>";
+	var MsjError= "<script> swal('Ocurrio un error');  </script>";
 	var formdata= new FormData(this);
 
 	var textoAlerta;
@@ -83,6 +84,7 @@ $('.FormularioAjax').submit(function(e)
 		cancelButtonText:"Cancelar"
 	}).then(function ()
 	{
+		console.log("Ingreso a la funcion");
 		$.ajax({
 			type: metodo,
 			url: accion,

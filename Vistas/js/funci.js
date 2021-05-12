@@ -123,9 +123,9 @@ else
 function MostrarDatosB(idcheq)
 {
     var chequenum= idcheq;
-
+    
     //Mostrar los datos del banco
-       $.ajax({
+          $.ajax({
     type: "POST",
     url: "ajax/chequesAjax.php",
     data:{cheque:chequenum,dato:"1"},
@@ -191,10 +191,10 @@ function MostrarDatosB(idcheq)
     });
 }
 
-
-
-
-
+$(document).on('change', '#lstcuenta', function(event) {
+ 
+    $('#chequeimp').val($("#lstcuenta option:selected").text());
+});
 
 //------------------------------------------------
 

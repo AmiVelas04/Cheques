@@ -15,7 +15,7 @@ class loginModelo extends modeloMain
 {
 	protected function iniciar_sesion_modelo($datos)
 	{
-		$sql=modeloMain::conectar()->prepare("select * from usuario where usuario=:usuario and pass=:pass");
+		$sql=modeloMain::conectar()->prepare("select id_usu as id, nombre,monto,nivel from usuario where usuario=:usuario and pass=:pass");
 		//$clave=modeloMain::encryption($datos['pass']);
 		$sql->bindparam(":usuario",$datos['usuario']);
 		$sql->bindparam(":pass",$datos['pass']);
@@ -47,7 +47,6 @@ class loginModelo extends modeloMain
 			$respuesta="false";
 		}
 		return $respuesta;
-		
-
 	}
+
 }

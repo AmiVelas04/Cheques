@@ -1,4 +1,4 @@
-<?
+<?php
 if($peticionajax) {
 
 require_once "../Modelos/ingresochModelo.php";
@@ -12,68 +12,192 @@ require_once "./vistas/modulos/script.php";
 
 }
 //controlador para agregar  chequeras
-class ingresochControlador extends ingresochModelo
+Class ingresochControlador extends ingresoModelo
 {
     
 public function ingreso_banco_controlador($datos)
 {
-    $cod=ingresochModelo::new_codigo_banco();
-    $nombreban=modeloMain::limpiar_cadena($datos['NomBanc']);
-    $direccion=modeloMain::limpiar_cadena($datos['DirBanc']);
+    $idBanc=ingresoModelo::new_codigo_banco();
+    $nombreban=($datos['NomBanc']);
+    $direccion=($datos['DirBanc']);
 
-$datosban=['id'=>$cod,
+$datosban=['id'=>$idBanc,
             'nombre'=>$nombreban,
             'dir'=>$direccion];
-            $res1=ingresochModelo::ingreso_banco_modelo($datosban);
+            $res1=ingresoModelo::ingreso_banco_modelo($datosban);
             if ($res1->rowCount()>=1)
             {
-                $codcu=ingresochModelo::new_codigo_cuenta();
+                $codcu=ingresoModelo::new_codigo_cuenta();
                 
-                $num_cue=modeloMain::limpiar_cadena($datos['NumCue']);
-                $saldo=modeloMain::limpiar_cadena($datos['Saldo']);
-                $tipo=modeloMain::limpiar_cadena($datos['Tipo']);
+                $num_cue=($datos['NumCue']);
+                $saldo=($datos['Saldo']);
+                $tipo=($datos['Tipo']);
+                $est='Activo';
                 $datoscue=[
                     'codcue'=>$codcu,
                     'numcue'=>$num_cue,
                     'saldo'=>$saldo,
-                    'tipo'=>$tipo
+                    'tipo'=>$tipo,
+                    'estado'=>$est
                 ];
-                $res2=ingresochModelo::ingreso_cuenta_modelo($datoscue);
-                if($res2->rowCount()>=1)
+           
+                $res2=ingresoModelo::ingreso_cuenta_modelo($datoscue);
+                if($res2->RowCount()>=1)
                 {
-                    $id_chequera= ingresoModelo::new_codigo_chequera();
-                    $estado= modeloMain::limpiar_cadena($datos['Estado']);
-                    $cantidad= modeloMain::limpiar_cadena($datos['Cant']);
-                    $datoscheq=[
-                    'idcheq'=>$id_chequera,
-                    'estado'=>$estado,
-                    'cant'=>$cantidad
+                    $cant=($datos['Cant']);
+                    $datosAsignaBC=[
+                     'idb'=>$idBanc ,
+                     'idc'=>$codcu
                     ];
-                    $res3=ingresoModelo::ingreso_chequera_modelo($datoscheq);
-                    if ($res3->rowCount()>=1)
+
+                    $res3=ingresomodelo::asigna_banco_cuenta_modelo($datosAsignaBC);
+                    if($res3->RowCount()>=1)
                     {
-                        $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Chequera registrada con exito","tipo"=>"success"];	
+                        $idch= ingresomodelo::new_codigo_chequera();
+                        $estch="Activo";
+                        $datoschequ=[
+                            'id'=>$idch,
+                            'cant'=>$cant,
+                            'estado'=>$estch
+                        ];
+                        $res4=ingresomodelo::ingreso_chequera_modelo($datoschequ);
+                        if ($res4->RowCount()>=1)
+                        {
+                            $datosasignaCCh=[
+                                "idc"=>$codcu,
+                                'idch'=>$idch
+                            ];
+                            $res5=ingresomodelo::asigna_cuenta_cheq_modelo($datosasignaCCh);
+                            if ($res5->RowCount()>=1)
+                            {
+                                $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Datos ingresados con exito","tipo"=>"success"];	
+                            }
+                            else
+                            {
+                                $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo asignar la chequera","tipo"=>"error"];	
+                            }
+                        }
+                        else
+                        {
+                            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la chequera","tipo"=>"error"];	
+                        }
                     }
                     else
                     {
-                        $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la chequera","tipo"=>"error"];	
+                        $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo asignar la cuenta","tipo"=>"error"];	
                     }
                 }
                 else
                 {
                     $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la cuenta","tipo"=>"error"];	
                 }
+    }
+    else
+    {
+        $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar el banco","tipo"=>"error"];	
+    }
+   return ingresoModelo::Sweet_alert($alerta);
+}
 
+    public function ingreso_cuenta_controlador($datos)
+    {
+        $idBanc=$datos['IdBanc'];
+        $cod=ingresomodelo::new_codigo_cuenta();
+        $num=$datos['NumCue'];
+        $saldo=$datos['Saldo'];
+        $tipo=$datos['Tipo'];
+        $cant= $datos['Cant'];
+        $datoscu=[
+            "id"=>$cod,
+            "cuenta"=>$num,
+            "saldo"=>$saldo,
+            "tipo"=>$tipo,
+            "estado"=>"Activa"
+        ];
+        $res1=ingresomodelo::ingreso_cuenta_modelo($datoscu);
+        if($res1->RowCount()>=1)
+        {
+            $datosAsignaBC=[
+             'idb'=>$idBanc ,
+             'idc'=>$cod
+            ];
+            $res2=ingresomodelo::asigna_banco_cuenta_modelo($datosAsignaBC);
+            if($res2->RowCount()>=1)
+            {
+                $idch= ingresomodelo::new_codigo_chequera();
+                $datoschequ=[
+                    'id'=>$idch,
+                    'cant'=>$cant
+                ];
+                $res3=ingresomodelo::ingreso_chequera_modelo($datoschequ);
+                if ($res3->RowCount()>=1)
+                {
+                    $datosasignaCCh=[
+                        "idc"=>$cod,
+                        'idch'=>$idch
+                    ];
+                    $res4=ingresomodelo::asigna_cuenta_cheq_modelo($datosasignaCCh);
+                    if ($res4->RowCount()>=1)
+                    {
+                        $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Datos ingresados con exito","tipo"=>"success"];	
+                    }
+                    else
+                    {
+                        $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo asignar la chequera","tipo"=>"error"];	
+                    }
+                }
+                else
+                {
+                    $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la chequera","tipo"=>"error"];	
+                }
             }
             else
             {
-                $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar el banco","tipo"=>"error"];	
+                $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo asignar la cuenta","tipo"=>"error"];	
             }
             
-          return ingresochModelo::Sweet_alert($alerta);
+        }
+        else
+        {
+            $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la cuenta","tipo"=>"error"];	
+        }
     }
 
 
+    public function ingreso_chequera_controlador($datos)
+    {
+        $cant= $datos['Cant'];
+        $cod=$datos['IdCue'];
+        $idch= ingresomodelo::new_codigo_chequera();
+                $datoschequ=[
+                    'id'=>$idch,
+                    'cant'=>$cant
+                ];
+                $res3=ingresomodelo::ingreso_chequera_modelo($datoschequ);
+                if ($res3->RowCount()>=1)
+                {
+                    $datosasignaCCh=[
+                        "idc"=>$cod,
+                        'idch'=>$idch
+                    ];
+                    $res4=ingresomodelo::asigna_cuenta_cheq_modelo($datosasignaCCh);
+                    if ($res4->RowCount()>=1)
+                    {
+                        $alerta=["Alerta"=>"limpiar","titulo"=>"Exito","texto"=>"Datos ingresados con exito","tipo"=>"success"];	
+                    }
+                    else
+                    {
+                        $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo asignar la chequera","tipo"=>"error"];	
+                    }
+                }
+                else
+                {
+                    $alerta=["Alerta"=>"simple","titulo"=>"Ocurrio un error","texto"=>"No se pudo ingresar la chequera","tipo"=>"error"];	
+                }
+        
+    }
 
+    public function asigna_chequera_controlador()
+    {}
 
 }

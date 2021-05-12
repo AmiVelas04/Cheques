@@ -10,11 +10,8 @@
 	
 </head>
 <body>
-<?php include "Vistas/Modulos/script.php";
-	?>
-	<?php 
-
-
+<?php include "Vistas/Modulos/script.php";?>
+<?php
 $peticionajax=false; 
 require_once "./controladores/vistascontrolador.php";
 $vt= new vistasControlador();
@@ -27,15 +24,12 @@ $vistasR=$vt->obtener_vistas_controlador();
 			require_once "./vistas/contenidos/404-view.php";
 		}
 		else:
-	session_start(['name'=>'pyc']);
+	session_start(['name'=>'cheques']);
 	require_once "./controladores/logincontrolador.php";
 	$lc=new loginControlador();
-	if (!isset($_SESSION['token_pyc']) || !isset($_SESSION['usuario_pyc'])) 
-	{
-		//$lc->forzar_cierre_sesion_controlador();
-	}
-
-	 ?>
+	if (!isset($_SESSION['token_pyc']) || !isset($_SESSION['usuario'])) 
+	{//$lc->forzar_cierre_sesion_controlador();
+	}?>
 	<!--Barra Lateral -->
 	<?php include "Vistas/Modulos/navlateral.php";?>
 
@@ -44,15 +38,10 @@ $vistasR=$vt->obtener_vistas_controlador();
 		
 		<!-- Content page-->
 		<?php include "Vistas/Modulos/navbar.php";
-		require_once $vistasR;
-		
-		?>
-		
-		
-		
+		require_once $vistasR;?>
 	</section>
 	<?php include "./Vistas/Modulos/logoutScript.php";
- 	endif; ?>
+ 	endif;?>
 
 	
 	<script>

@@ -3,7 +3,7 @@
 		protected function obtener_vistas_modelo($vistas)
 		{
 
-			$lista_blanca=[	"admin","liberarch","cheques","ingresoch","usuario","main"];
+			$lista_blanca=[	"admin","liberarch","cheques","ingresoch","usuario","main",'imprimirChe','reportes'];
 			if(in_array($vistas,$lista_blanca))
 				{
 					if(is_file("./Vistas/contenidos/" . $vistas . "-view.php")){

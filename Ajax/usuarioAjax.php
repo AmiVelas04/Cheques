@@ -11,7 +11,8 @@ if(isset($_POST['nombre-reg']) && isset($_POST['usu-reg']) && isset($_POST['pass
         'usu'=>$_POST['usu-reg'],
         'pass1'=>$_POST['pass1-reg'],
         'pass2'=>$_POST['pass2-reg'],
-        'nivel'=>$_POST['nivel']
+        'nivel'=>$_POST['nivel'],
+        'monto'=>$_POST['monto-reg']
     ];
     $iniciar = new usuarioControlador();
     echo $iniciar->ingreso_usuario_controlador($datos);
