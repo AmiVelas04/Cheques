@@ -1,6 +1,6 @@
 <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-card zmdi-hc-fw"></i>Generacion de cheques <small><?php  echo $_SESSION['usuario'];  ?></small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Generacion de cheques <small><?php  echo $_SESSION['usuario'];  ?></small></h1>
 			</div>
 			<p class="lead"></p>
 </div>
@@ -22,7 +22,7 @@
 					
 					<form data-form="save" id="FormularioAjax" name="FormularioAjax" action="<?php echo SERVERURL;?>ajax/chequesAjax.php" method="POST" class="FormularioAjax" autocomplete="on" enctype="multipart/form-data">
 				    	<fieldset>
-				    		<legend><i class="zmdi zmdi-assignment-o"></i> &nbsp; Información del cheque</legend>
+				    		<legend><i class="zmdi zmdi-collection-text"></i> &nbsp; Información del cheque</legend>
 				    		<div class="container-fluid">
 				    			<div class="row">
                                 

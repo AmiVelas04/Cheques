@@ -72,11 +72,11 @@
 				</li>
 
 				<li>
-					<a href="<?php echo SERVERURL;?>">
+					<a href="<?php echo SERVERURL;?>reportes">
 						<i class="zmdi zmdi-book-image zmdi-hc-fw"></i> Reportes
 					</a>
 				</li>
-				
+
 			</ul>
 		</div>
 	</section>

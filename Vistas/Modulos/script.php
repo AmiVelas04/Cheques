@@ -11,5 +11,6 @@
 	
 	<?php echo"";?>
 	<link rel='stylesheet' type='text/css' href='<?php echo SERVERURL; ?>vistas/css/sweetalert2.css'>
+	
 
 	
