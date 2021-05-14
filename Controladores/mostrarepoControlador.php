@@ -1,12 +1,10 @@
 <?php 
 if($peticionajax) {
 require_once "../Modelos/mostrarepoModelo.php";
-
 }
 else
 {
 require_once "./Modelos/mostrarepoModelo.php";
-
 }
 //controlador para agregar alumno
 
@@ -24,7 +22,6 @@ class mostrarepoControlador extends mostrarepoModelo
     $repordata=mostrarepoModelo::repor2($datos);
     $result=$repordata->fetchAll();
     return $result;
-
    }
    public function reporte3_controlador($datos)
    {

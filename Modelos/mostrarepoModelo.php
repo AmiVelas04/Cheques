@@ -15,7 +15,7 @@ protected function repor1($datos)
     $fechai=$datos['fechai'];
     $fechaf=$datos['fechaf'];
     $cuenta=$datos['cuenta'];
-    $consul="SELECT ch.ID_CHEQUE as id,ch.FECHA as fecha,ch.MONTO as monto,ch.BENEFICIARIO as benef FROM cheque ch
+    $consul="SELECT ch.ID_CHEQUE as id,date_format(ch.FECHA,'%d/%M/%Y') as fecha,ch.MONTO as monto,ch.BENEFICIARIO as benef FROM cheque ch
     INNER JOIN cheque_cheq chc ON chc.ID_CHEQUE=ch.ID_CHEQUE
     INNER JOIN chequera cheq ON cheq.ID_CHEQUERA= chc.ID_CHEQUERA
     INNER JOIN cuenta_chequ cch ON cch.ID_CHEQUERA=cheq.ID_CHEQUERA
@@ -29,23 +29,22 @@ protected function repor2($datos)
 {
     $fechai=$datos['fechai'];
     $fechaf=$datos['fechaf'];
-    $cuenta=$datos['cuenta'];
+    $usu=$datos['usuario'];
     $liber="";
-if ($cuenta==1)
+if ($usu==1)
 {
 $liber="Gerencia";
 }
-elseif($cuenta==2)
+elseif($usu==2)
 {
     $liber="Auditoria";
 }
-elseif($cuenta==3)
+elseif($usu==3)
 {
     $liber="Sin liberacion";
 }
-
     $consul="SELECT ch.ID_CHEQUE,ch.FECHA,ch.MONTO,ch.MONTO,ch.BENEFICIARIO FROM cheque ch
-    WHERE  ch.FECHA>='".$fechai."' AND ch.FECHA<='".$fechaf."' ch.LIBERO='".$liber."'";
+    WHERE  ch.FECHA>='".$fechai."' AND ch.FECHA<='".$fechaf."' and ch.LIBERO='".$liber."'";
 	$sql=modeloMain::ejecutar_consulta_simple($consul);
 	return $sql;
 

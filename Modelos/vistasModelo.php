@@ -12,7 +12,6 @@
 					{
 						$contenido="login";
 					}
-
 				}
 			elseif ($vistas=="login") {
 
@@ -26,10 +25,5 @@
 				$contenido="404";	
 			}
 			return $contenido;
-
-
-			
-
-			
 		}
 	}

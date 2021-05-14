@@ -56,7 +56,7 @@ class loginControlador extends loginModelo
 				$_SESSION['usuario'] =$row['nombre'];
 				$_SESSION['nivel'] =$row['nivel'];
 				$_SESSION['monto'] =$row['monto'];
-				echo "<script>alert('".$row['nombre'].":".$row['nivel'].",".$row['nivel']."')</script>";
+				//echo "<script>alert('".$row['nombre'].":".$row['nivel'].",".$row['nivel']."')</script>";
 				
 			}
 			 /*	$_SESSION['usuarip_pyc']=$row['CuentaUsuario'];

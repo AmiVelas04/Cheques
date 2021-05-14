@@ -1,7 +1,6 @@
  <?php 
  $peticionajax=true;
         include "../Core/fpdf/fpdf.php";     
-       // require_once "../Modelos/imprimirModelo.php";
         if (isset($_POST['chequeimp']))
         {
             $idche=$_POST['chequeimp'];

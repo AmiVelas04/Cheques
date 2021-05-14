@@ -17,14 +17,11 @@ class vistasControlador extends vistasModelo{
 
 			//echo "Esta es la vista que busca: " . $respuesta;
 			//echo "<br>";
-				
 			}
 		}
 		else
 		{
 			$respuesta="login";
-
-
 		}	
 		return $respuesta;
 
