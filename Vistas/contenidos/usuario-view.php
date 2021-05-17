@@ -1,6 +1,9 @@
 <div class="container-fluid">
 	<div class="page-header">
-		<h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Creacion de Usuarios <small><?php echo $_SESSION['usuario'] ?></small></h1>
+		<h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Creacion de Usuarios <small><?php echo $_SESSION['usuario'];
+																										if ($_SESSION['nivel'] == 3) {
+																											echo "'<script>swal('Usuario no autorizado');</script>'";
+																										} ?></small></h1>
 	</div>
 	<p class="lead"></p>
 </div>

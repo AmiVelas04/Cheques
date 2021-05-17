@@ -18,39 +18,31 @@ if (isset($_POST['banco']) && !isset($_POST['cuenta']) && !isset($_POST['chequer
 } else if (isset($_POST['banco']) && isset($_POST['cuent']) && isset($_POST['chequer']) && isset($_POST['fecha-reg']) && isset($_POST['monto-reg']) && isset($_POST['nombre-reg'])) {
     //echo "<script>console.log('tercer if')</script>";
 
-    if (isset($_SESSION['monto'])) {
-        $montoest = $_SESSION['monto'];
+    if (isset($_POST['canti-reg'])) {
+        $montoest = $_POST['canti-reg'];
     } else {
         $montoest = 0;
     }
-    echo "<script>console.log('monto reg: " . $_SESSION['monto'] . $_SESSION['nivel'] . "')</script>";
+    //echo "<script>console.log('monto reg: " . $_SESSION['monto'] . $_SESSION['nivel'] . "')</script>";
 
     $Mbanc = new chequeControlador();
+    $estado = "";
     if ($montoest >= $_POST['monto-reg']) {
-        $datos = [
-            'banco' => $_POST['banco'],
-            'cuenta' => $_POST['cuent'],
-            'chequera' => $_POST['chequer'],
-            'fecha' => $_POST['fecha-reg'],
-            'monto' => $_POST['monto-reg'],
-            'nombre' => $_POST['nombre-reg'],
-            'chequera' => $_POST['chequer'],
-            'estado' => 'Generado',
-            'usuario' => $_POST['usu-reg']
-        ];
+        $estado = "Generado";
     } else {
-        $datos = [
-            'banco' => $_POST['banco'],
-            'cuenta' => $_POST['cuent'],
-            'chequera' => $_POST['chequer'],
-            'fecha' => $_POST['fecha-reg'],
-            'monto' => $_POST['monto-reg'],
-            'nombre' => $_POST['nombre-reg'],
-            'chequera' => $_POST['chequer'],
-            'estado' => 'Pendiente',
-            'usuario' => $_POST['usu-reg']
-        ];
+        $estado = "Pendiente";
     }
+    $datos = [
+        'banco' => $_POST['banco'],
+        'cuenta' => $_POST['cuent'],
+        'chequera' => $_POST['chequer'],
+        'fecha' => $_POST['fecha-reg'],
+        'monto' => $_POST['monto-reg'],
+        'nombre' => $_POST['nombre-reg'],
+        'chequera' => $_POST['chequer'],
+        'estado' => $estado,
+        'usuario' => $_POST['usu-reg']
+    ];
     echo $Mbanc->agregar_cheque_controlador($datos);
 } else {
 }

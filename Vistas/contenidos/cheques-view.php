@@ -1,7 +1,10 @@
 <div class="container-fluid">
 	<div class="page-header">
 		<h1 class="text-titles"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Generacion de cheques <small><?php echo $_SESSION['usuario'];
-																													$usu = $_SESSION['usuario'];  ?></small></h1>
+																													$usu = $_SESSION['usuario'];
+																													$canti = $_SESSION['monto'];
+																													$nivel = $_SESSION['nivel'];
+																													?></small></h1>
 	</div>
 	<p class="lead"></p>
 </div>
@@ -44,7 +47,6 @@
 										<select class=" form-control" onchange="mostrar_chequera(this.value,banco.value)" id="cuent" name="cuent">
 
 										</select>
-
 								</div>
 							</div>
 
@@ -89,6 +91,8 @@
 					<button type="save" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Generar</button>
 				</p>
 				<input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,60}" class="form-control" type="text" name="usu-reg" style="display:none" value="<?php echo $usu; ?>" maxlength="50">
+				<input pattern="[0-9.,]{1,60}" class="form-control" type="text" name="canti-reg" style="display:none" value="<?php echo $canti; ?>" maxlength="50">
+				<input pattern="[0-9 ]{1}" class="form-control" type="text" name="nivel-reg" style="display:none" value="<?php echo $nivel; ?>" maxlength="50">
 				<div class="RespuestaAjax"></div>
 			</form>
 		</div>

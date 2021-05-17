@@ -60,8 +60,6 @@ class chequeModelo extends modeloMain
 		if ($datos['estado'] == "Generado") {
 			$lib = $datos['usuario'];
 		}
-
-
 		$sql = modeloMain::conectar()->prepare("Insert into cheque(id_cheque,fecha,monto,beneficiario,estado,Libero) values(:id,:fecha,:monto,:nombre,:estado,:lib)");
 		$sql->bindparam(":id", $datos['id']);
 		$sql->bindparam(":fecha", $datos['fecha']);

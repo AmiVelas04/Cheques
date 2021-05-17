@@ -14,8 +14,6 @@ class chequeControlador extends chequeModelo
 {
     public function agregar_cheque_controlador($datos)
     {
-
-
         $idch = chequeModelo::new_id_cheque_modelo();
         $idchequera = $datos['chequera'];
         $stado = $datos['estado'];
@@ -25,7 +23,8 @@ class chequeControlador extends chequeModelo
             'fecha' => $datos['fecha'],
             'monto' => $datos['monto'],
             'beneficiario' => $datos['nombre'],
-            'estado' => $stado
+            'estado' => $stado,
+            'usuario'  => $datos['usuario'],
         ];
         // echo "<script>console.log('" . $idch . $datos['fecha'] . "," . $datos['monto'] . "," . $datos['nombre'] . "')</script>";
         $conteo = chequeModelo::cant_cheque_modelo($idchequera);
