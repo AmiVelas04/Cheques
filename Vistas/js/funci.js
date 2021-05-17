@@ -40,14 +40,15 @@ $.ajax({
 //Mostrar o ingresar cuenta
 function mostrarBanco(valor)
 {
-if (valor=="0")
+    
+if (valor==0)
 {
 var d= document.getElementById("lstbanco");
 d.style= "display:none";
 var t= document.getElementById("txtbanco");
 t.style="display:flex";
 $(document).ready(function(){
-        
+      
     $//('input:radio[name=optcuenta]:nth(0)').attr('checked',true);
     $('input:radio[name=optcuenta]')[0].checked = true;
     $('input:radio[name=optcheq]')[0].checked=true;
@@ -57,20 +58,29 @@ var cl= document.getElementById("lstcuenta");
 cl.style= "display:none";
 var ct= document.getElementById("txtcuenta");
 ct.style="display:flex";
-
 var chl= document.getElementById("lstcheq");
 chl.style= "display:none";
 var cht= document.getElementById("txtcheq");
 cht.style="display:flex";
-
+var w= document.getElementById("lbldirec");
+    w.style="display:flex";
 
 }
-else if(valor=="1")
+else if(valor==1)
 {
+    console.log('Mostras listas');
     var d= document.getElementById("lstcheq");
     d.style= "display:flex";
+    var cl= document.getElementById("lstbanco");
+cl.style= "display:flex";
     var t= document.getElementById("txtcheq");
     t.style="display:none";
+    var r= document.getElementById("txtbanco");
+    r.style="display:none";
+    var q= document.getElementById("txtdirec");
+    q.style="display:none";
+    var w= document.getElementById("lbldirec");
+    w.style="display:none";
 }
 else
 {}
@@ -86,6 +96,16 @@ var d= document.getElementById("lstcuenta");
 d.style= "display:none";
 var t= document.getElementById("txtcuenta");
 t.style="display:flex";
+var u= document.getElementById("txtsaldo");
+u.style="display:flex";
+var v= document.getElementById("txttipo");
+v.style="display:flex";
+var w= document.getElementById("lblsaldo");
+w.style="display:flex";
+var x= document.getElementById("lbltipo");
+x.style="display:flex";
+
+
 }
 else if(valor=="1")
 {
@@ -93,6 +113,15 @@ else if(valor=="1")
     d.style= "display:flex";
     var t= document.getElementById("txtcuenta");
     t.style="display:none";
+  
+var u= document.getElementById("txtsaldo");
+u.style="display:none";
+var v= document.getElementById("txttipo");
+v.style="display:none";
+var w= document.getElementById("lblsaldo");
+w.style="display:none";
+var x= document.getElementById("lbltipo");
+x.style="display:none";
 }
 else
 {}
@@ -188,6 +217,35 @@ function MostrarDatosB(idcheq)
         },
         error:function()
         {$('#datosBe').html("No se encontraron beneficiarios")}
+    });
+}
+function mostrardatosC(idbanco)
+{
+    $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax.php",
+        data:{banco:idbanco},
+        success:function(datos2)
+        { //alert(datos2);
+            $('#lstcuenta').html(datos2)
+        },
+        error:function()
+        {$('#lstcuenta').html("No se encontraron cuentas")}
+    });
+}
+
+function mostrardatosCu(idcuenta)
+{
+    $.ajax({
+        type: "POST",
+        url: "ajax/chequesAjax.php",
+        data:{cuenta:idcuenta},
+        success:function(datos3)
+        { //alert(r);
+            $('#lstcheq').html(datos3)
+        },
+        error:function()
+        {$('#lstcheq').html("No se encontraron chequeras")}
     });
 }
 

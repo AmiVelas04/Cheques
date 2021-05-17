@@ -30,7 +30,6 @@ $('.btn-exit-system').on('click', function(e){
 
 					}
 
-
 				}
 
 			});

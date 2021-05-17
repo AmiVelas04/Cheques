@@ -46,7 +46,7 @@ $('.btn-exit-system').on('click', function(e){
 
 $('.FormularioAjax').submit(function(e)
 {
-	console.log("inicar la funcion ajax");
+	//console.log("inicar la funcion ajax");
 	e.preventDefault();
 	var form=$(this);
 	var tipo = form.attr('data-form');
@@ -84,7 +84,7 @@ $('.FormularioAjax').submit(function(e)
 		cancelButtonText:"Cancelar"
 	}).then(function ()
 	{
-		console.log("Ingreso a la funcion");
+			//console.log("Ingreso a la funcion");
 		$.ajax({
 			type: metodo,
 			url: accion,
@@ -115,16 +115,17 @@ $('.FormularioAjax').submit(function(e)
 			},
 			success:function(data)
 			{
-				alert(data);
+				//alert(data);
 				console.log(data);
 				respuesta.html(data);
 			},
 			error:function () 
 			{
-				alert("No se pudo");
+				//alert("No se pudo");
 				respuesta.html(MsjError);
 			}
 			});
+		
 		return false;
 	}
 		   );

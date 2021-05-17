@@ -13,6 +13,7 @@ class usuarioModelo extends modeloMain
 {
     protected function ingreso_usuario_modelo($datos)
     {
+        echo"<script>console.log('codigo de nuevo cheque: ".$datos[0]."')</script>";
         $sql=modeloMain::conectar()->prepare("Insert into usuario(id_usu,nombre,usuario,pass,nivel,monto) values(:id,:nombre,:usu,:pass,:nivel,:monto)");
 		$sql->bindparam(":id",$datos['codigo']);
         $sql->bindparam(":nombre",$datos['nombre']);
