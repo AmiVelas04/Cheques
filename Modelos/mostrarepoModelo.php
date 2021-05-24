@@ -19,6 +19,7 @@ class mostrarepoModelo extends modeloMain
     INNER JOIN cuenta_chequ cch ON cch.ID_CHEQUERA=cheq.ID_CHEQUERA
     INNER JOIN cuenta cu ON cu.ID_CUENTA = cch.ID_CUENTA
     WHERE cu.ID_CUENTA='" . $cuenta . "' AND ch.FECHA>='" . $fechai . "' AND ch.FECHA<='" . $fechaf . "'";
+        //  echo "<script>alert('" . $consul . "')</script>";
         $sql = modeloMain::ejecutar_consulta_simple($consul);
         return $sql;
     }
@@ -36,7 +37,7 @@ class mostrarepoModelo extends modeloMain
         } elseif ($usu == 3) {
             $liber = "Sin liberacion";
         }
-        $consul = "SELECT ch.ID_CHEQUE,ch.FECHA,ch.MONTO,ch.MONTO,ch.BENEFICIARIO FROM cheque ch
+        $consul = "SELECT ch.ID_CHEQUE,date_format(ch.FECHA,'%d/%M/%Y'),ch.MONTO,ch.BENEFICIARIO FROM cheque ch
     WHERE  ch.FECHA>='" . $fechai . "' AND ch.FECHA<='" . $fechaf . "' and ch.LIBERO='" . $liber . "'";
         $sql = modeloMain::ejecutar_consulta_simple($consul);
         return $sql;

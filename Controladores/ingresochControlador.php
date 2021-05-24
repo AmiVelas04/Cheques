@@ -31,8 +31,8 @@ class ingresochControlador extends ingresoModelo
             $tipo = ($datos['Tipo']);
             $est = 'Activo';
             $datoscue = [
-                'codcue' => $codcu,
-                'numcue' => $num_cue,
+                'id' => $codcu,
+                'cuenta' => $num_cue,
                 'saldo' => $saldo,
                 'tipo' => $tipo,
                 'estado' => $est
@@ -84,7 +84,7 @@ class ingresochControlador extends ingresoModelo
 
     public function ingreso_cuenta_controlador($datos)
     {
-        echo "<script>console.log('".$datos['IdBanc'].$datos['NumCue'].$datos['NumCue'].$datos['Tipo'].$datos['Cant']."')</script>";
+        echo "<script>console.log('" . $datos['IdBanc'] . $datos['NumCue'] . $datos['NumCue'] . $datos['Tipo'] . $datos['Cant'] . "')</script>";
         $idBanc = $datos['IdBanc'];
         $cod = ingresomodelo::new_codigo_cuenta();
         $num = $datos['NumCue'];
