@@ -25,6 +25,21 @@ class chequeModelo extends modeloMain
 		}
 		return $id;
 	}
+	protected function new_id_bitacora_modelo()
+	{
+		$sql = modeloMain::ejecutar_consulta_simple("Select max(id_bitacora) as id from bitacora");
+
+		foreach ($sql as $row) {
+			$id = $row['id'];
+			if ($id == null) {
+				$id = 1;
+			} else {
+				$id++;
+			}
+		}
+		return $id;
+	}
+
 
 	protected function mostrar_banco_modelo()
 	{
@@ -97,6 +112,14 @@ class chequeModelo extends modeloMain
 		return $sql;
 	}
 
+	protected function mostrar_generado_modelo()
+	{
+		$consul = "SELECT ch.ID_CHEQUE as id  FROM cheque ch WHERE ch.ESTADO= 'Generado'";
+		$sql = modeloMain::ejecutar_consulta_simple($consul);
+		return $sql;
+	}
+
+
 	protected function mostrar_datospen_modelo($idch)
 	{
 		$consul = "SELECT ban.NOMBRE as nom,cu.NUM_CUENTA as num,che.ID_CHEQUERA as che,ch.MONTO as mon,ch.BENEFICIARIO as ben  FROM cheque ch
@@ -106,7 +129,7 @@ INNER JOIN cuenta_chequ cuc ON che.ID_CHEQUERA=cuc.ID_CHEQUERA
 INNER JOIN cuenta cu ON cu.ID_CUENTA= cuc.ID_CUENTA
 INNER JOIN banco_cuenta bac ON bac.ID_CUENTA=cu.ID_CUENTA
 INNER JOIN banco ban ON ban.ID_BANCO= bac.ID_BANCO
-WHERE ch.ESTADO='Pendiente' AND ch.ID_CHEQUE=" . $idch;
+WHERE ch.ID_CHEQUE=" . $idch;
 
 		$sql = modeloMain::ejecutar_consulta_simple($consul);
 		return $sql;
@@ -122,6 +145,23 @@ WHERE ch.ESTADO='Pendiente' AND ch.ID_CHEQUE=" . $idch;
 		return $sql;
 	}
 
+	protected function ingreso_bitacora($datos)
+	{
+		$sql = modeloMain::conectar()->prepare("Insert into Bitacora(id_bitacora,detalle,fecha) values(:id,:detalle,:fecha)");
+		$sql->bindparam(":id", $datos['idbita']);
+		$sql->bindparam(":detalle", $datos['deta']);
+		$sql->bindparam(":fecha", $datos['fecha']);
+		try {
+			$sql->execute();
+			return $sql;
+		} catch (PDOException $e) {
+			echo "El error al agregar el bitacora: " . $e;
+		}
+	}
+
+	protected function asigna_bitacora($datos)
+	{
+	}
 
 
 

@@ -14,10 +14,23 @@ class chequeControlador extends chequeModelo
 {
     public function agregar_cheque_controlador($datos)
     {
+        $idbita = chequeModelo::new_id_bitacora_modelo();
+        $detalle = "Intento de generacion de cheque por " . $datos['usuario'];
+        $fecha = date("Y/m/d H:m:s");
+        $valores =
+            [
+                'idbita' => $idbita,
+                'deta' => $detalle,
+                'fecha' => $fecha
+            ];
+        echo "<script>console.log('" . $idbita . "," . $detalle . "," . $fecha . "')</script>";
+        $bita = chequeModelo::ingreso_bitacora($valores);
+
         $idch = chequeModelo::new_id_cheque_modelo();
         $idchequera = $datos['chequera'];
         $stado = $datos['estado'];
         $monto = $datos['monto'];
+
         $datoscheq = [
             'id' => $idch,
             'fecha' => $datos['fecha'],
@@ -141,10 +154,26 @@ class chequeControlador extends chequeModelo
         return $conte;
     }
 
+    public function mostrar_chequesgen_controlador()
+    {
+        $sql = chequeModelo::mostrar_generado_modelo();
+        $conte = "";
+        $num = 0;
+        if ($sql->rowcount() >= 1) {
+            $datos = $sql->fetchall();
+            $conte .= "   
+    <option value='0'>Seleccione el número de cheque</option>";
+            foreach ($datos as $row) {
+                $num++;
+                $conte .= "<option value='" . $row['id'] . "'>" . $row['id'] . "</option>";
+            }
+        }
+        return $conte;
+    }
+
     public function mostrar_datosch_controlador($id, $dato)
     {
         $sql = chequeModelo::mostrar_datospen_modelo($id);
-
         if ($sql->rowcount() >= 1) {
             $datos = $sql->fetchall();
             foreach ($datos as $row) {

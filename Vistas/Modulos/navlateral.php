@@ -1,4 +1,19 @@
 <!-- SideBar -->
+<?php $nivel = $_SESSION['nivel'];
+$mostrar = "";
+$mostrar2 = "";
+if ($nivel == 3) {
+	$mostrar = "style= display:none";
+} else {
+	$mostrar = "";
+}
+if ($nivel == 3) {
+	$mostrar2 = "style= display:flex";
+} else {
+	$mostrar = "";
+}
+
+?>
 <section class="full-box cover dashboard-sideBar">
 	<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
 	<div class="full-box dashboard-sideBar-ct">
@@ -42,14 +57,17 @@
 						<a href=" <?php echo SERVERURL; ?>cheques"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i> Generar Cheque</a>
 					</li>
 
-					<li>
+					<li <?php echo $mostrar2; ?>>
 						<a href=" <?php echo SERVERURL; ?>liberarch"><i class="zmdi zmdi-money zmdi-hc-fw"></i>Liberar Cheque</a>
+					</li>
+					<li <?php echo $mostrar2; ?>>
+						<a href=" <?php echo SERVERURL; ?>imprimir"><i class="zmdi zmdi-print zmdi-hc-fw"></i>imprimir Cheque</a>
 					</li>
 				</ul>
 			</li>
 			<li>
 			<li>
-				<a href="#!" class="btn-sideBar-SubMenu">
+				<a href="#!" class="btn-sideBar-SubMenu" <?php echo $mostrar; ?>>
 					<i class="zmdi zmdi-case zmdi-hc-fw"></i> Administración <i class="zmdi zmdi-caret-down pull-right"></i>
 				</a>
 				<ul class="list-unstyled full-box">
@@ -63,7 +81,7 @@
 			</li>
 
 			<li>
-				<a href="<?php echo SERVERURL; ?>reportes">
+				<a href="<?php echo SERVERURL; ?>reportes" <?php echo $mostrar; ?>>
 					<i class="zmdi zmdi-book-image zmdi-hc-fw"></i> Reportes
 				</a>
 			</li>

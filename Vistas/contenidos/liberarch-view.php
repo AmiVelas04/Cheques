@@ -1,15 +1,12 @@
 <div class="container-fluid">
 	<div class="page-header">
-		<h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Liberacion de Cheques <small><?php 
-	 if (!isset($_SESSION['usuario']))
-		{
-		session_destroy();
-		}
-	else
-	{
-		echo $_SESSION['usuario']; 
-	}
-?></small></h1>
+		<h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Liberacion de Cheques <small><?php
+																											if (!isset($_SESSION['usuario'])) {
+																												session_destroy();
+																											} else {
+																												echo $_SESSION['usuario'];
+																											}
+																											?></small></h1>
 	</div>
 	<p class="lead"></p>
 </div>
@@ -20,7 +17,7 @@
 	</ul>
 </div>
 <?php $niv = $_SESSION['nivel'];
-	   $usu= $_SESSION['usuario'];?>
+$usu = $_SESSION['usuario']; ?>
 <!-- Panel nuevo CHEQUES -->
 <div class="container-fluid">
 	<div class="panel panel-info">
@@ -33,7 +30,7 @@
 				<h6><i class="zmdi zmdi-edit"></i></h6>
 				<h6> Editar Cheque</h6>
 			</button>
-			<form data-form="save" name="Formulario" id ="Formulario" action="<?php echo SERVERURL; ?>Ajax/ingresochAjax.php" method="POST" class="Formulario" autocomplete="on" enctype="multipart/form-data">
+			<form data-form="save" name="Formulario" id="Formulario" action="<?php echo SERVERURL; ?>Ajax/ingresochAjax.php" method="POST" class="Formulario" autocomplete="on" enctype="multipart/form-data">
 				<fieldset>
 					<legend><i class="zmdi zmdi-assignment-o"></i> &nbsp; Selecionar Cheque</legend>
 					<div class="container-fluid">
@@ -99,9 +96,9 @@
 							</div>
 						</div>
 					</div>
-<div>
-<input type="text" name="usuario" id="usuario" value="<?php echo $usu; ?>" style="display:none;"><br>
-</div>
+					<div>
+						<input type="text" name="usuario" id="usuario" value="<?php echo $usu; ?>" style="display:none;"><br>
+					</div>
 				</fieldset>
 		</div>
 		<!-- Boton de liberar -->
@@ -112,27 +109,17 @@
 					<h4><i class="zmdi zmdi-check-circle"></i></h4>
 					<h5> Liberar cheque</h5>
 				</button>
-				<button type="cancel" id="cancel" class="btn btn-warning btn-raised btn-sm">
-					<h4><i class="zmdi zmdi-close-circle"></i></h4>
-					<h5> Cancelar Cheque</h5>
-				</button>
+
 			</p>
 		</div>
 		</form>
 		<div class="Respuesta1" name="Respuesta1" id="Respuesta1"></div>
 
-		<!-- Boton imprimir -->
-		<form action="<?php echo SERVERURL; ?>Ajax/imprimirAjax.php" method="POST" method="GET">
-			<input type="text" name="chequeimp" id="chequeimp" style="display:none;"><br>
-			<div>
-				<input type="submit" value="Imprimir" class="btn btn-info btn-raised btn-sm">
 
-			</div>
 
-		</form>
 
 	</div>
-	
+
 </div>
 
 <?php
@@ -162,7 +149,7 @@ if (isset($niv) && $niv > 1) {
 			$("#txtnombre").hide();
 			$("#txtmonto1").show();
 			$("#txtnombre1").show();
-				});
+		});
 	}
 
 	$('.Formulario').submit(function(e) {

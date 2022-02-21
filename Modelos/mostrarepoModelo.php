@@ -45,6 +45,14 @@ class mostrarepoModelo extends modeloMain
 
     protected function repor3($datos)
     {
+        $fechai = $datos['fechai'];
+        $fechaf = $datos['fechaf'];
+        $consul = "SELECT bita.Id_bitacora as Id, date_format(bita.fecha,'%d/%M/%Y') as fecha, bita.detalle as detalle, count(*) 
+                from bitacora bita 
+                where bita.fecha>='" . $fechai . "' and bita.fecha<='" . $fechaf . "'";
+        // echo "<script>console.log('" . $consul . "')</script>";
+        $sql = modeloMain::ejecutar_consulta_simple($consul);
+        return $sql;
     }
 
     protected function repor4($cuenta)

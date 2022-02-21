@@ -7,6 +7,7 @@ global $titulo;
 global $cabecera;
 
 $titulo = "estaod";
+$tm = 14;
 if (isset($_POST['reportes'])) {
     include "../Controladores/mostrarepoControlador.php";
     $datosrep = new mostrarepoControlador();
@@ -45,16 +46,15 @@ if (isset($_POST['reportes'])) {
         }
     } else if ($repornum == 3) {
         $cabecera = array('Cod. Cheque', 'Fecha', 'Monto', 'Recibio');
-        if (isset($_POST['fechaini-reg']) && isset($_POST['fechafin-reg']) && isset($_POST['Cuentas'])) {
+        if (isset($_POST['fechaini-reg']) && isset($_POST['fechafin-reg'])) {
             $fechai = $_POST['fechaini-reg'];
             $fechaf = $_POST['fechafin-reg'];
-            $cuenta = $_POST['Cuentas'];
             $datosr3 = [
                 'fechai' => $fechai,
-                'fechaf' => $fechaf,
-                'cuenta' => $cuenta
+                'fechaf' => $fechaf
             ];
-            $cabecera;
+            $tm = 8;
+            $cabecera = array('operacion', 'Fecha', 'Detalle', 'Estado');;
             //      echo "<script>console.log('tercera opcion llega hasta aqui')</script>";
             $datosrev = $datosrep->reporte3_controlador($datosr3);
         } else {
@@ -106,11 +106,11 @@ class PDF extends FPDF
         $this->Cell(30, 10, "Reporte", 0, 1, 'C', 0);
         // Salto de línea
 
-        $this->Cell(30, 10, 'Fecha inicio', 1, 0, 'C');
+        $this->Cell(30, 10, '', 1, 0, 'C');
         // Salto de línea
         $this->Ln(20);
 
-        $this->Cell(30, 10, 'Fecha de fin', 1, 0, 'C');
+        $this->Cell(30, 10, '', 1, 0, 'C');
         // Salto de línea
         $this->Ln(20);
     }
@@ -149,7 +149,7 @@ class PDF extends FPDF
             $this->Cell($w[0], 6, $row[0], 'LR', 0, 'L', $fill);
             $this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
             $this->Cell($w[2], 6, $row[2], 'LR', 0, 'R', $fill);
-            //$this->Cell($w[3], 6, $row[3], 'LR', 0, 'R', $fill);
+            $this->Cell($w[3], 6, $row[3], 'LR', 0, 'R', $fill);
             $this->Ln();
             $fill = !$fill;
         }
@@ -163,7 +163,7 @@ $pdf = new PDF();
 $header = $cabecera;
 // Carga de datos
 
-$pdf->SetFont('Arial', '', 14);
+$pdf->SetFont('Arial', '', $tm);
 $pdf->AddPage();
 $pdf->FancyTable($header, $datosrev);
 $pdf->Output();
